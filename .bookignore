@@ -1,0 +1,6 @@
+# Ignore scripts direcitory
+scripts
+
+# Ignore parameters directory
+
+parameters
