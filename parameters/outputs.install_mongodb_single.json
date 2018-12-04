@@ -1,0 +1,195 @@
+[
+  {
+    "Key": "projectId",
+    "Type": "Bingo::Project::Id",
+    "DefaultValue": "11111",
+    "DisplayName": "项目",
+    "Fn::Source": {
+      "userMode": "buy",
+      "showRegion": true
+    }
+  },
+  {
+    "Key": "regionId",
+    "Type": "Bingo::Cloud::Region",
+    "DefaultValue": "bcc",
+    "DisplayName": "区域",
+    "Fn::Source": {}
+  },
+  {
+    "Key": "vpcId",
+    "Type": "Bingo::EC2::Vpc::Id",
+    "DefaultValue": "",
+    "DisplayName": "网络",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "vdcId": "Ref:projectId"
+    }
+  },
+  {
+    "Key": "storageId",
+    "Type": "Bingo::EC2::CloudStorage",
+    "DefaultValue": "storage-cloud",
+    "DisplayName": "存储类型",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    }
+  },
+  {
+    "Key": "instanceType",
+    "Type": "Bingo::EC2::InstanceType",
+    "DefaultValue": "m2.large",
+    "DisplayName": "实例规模",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    }
+  },
+  {
+    "Key": "imageId",
+    "Type": "Bingo::EC2::CloudImage",
+    "DefaultValue": "ami-2F8F9777",
+    "DisplayName": "镜像",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE"
+  },
+  {
+    "Key": "securityGroupName",
+    "Type": "Bingo::EC2::SecurityGroup::Id",
+    "DefaultValue": "default",
+    "DisplayName": "安全组",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "sortField": "Create_Time"
+    }
+  },
+  {
+    "Key": "expireTime",
+    "Type": "Bingo::EC2::ExpireTime",
+    "DefaultValue": "-1",
+    "DisplayName": "有效期",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "9ccbe743-d09e-4509-a881-982e0b477c6f"
+    }
+  },
+  {
+    "Key": "keypairName",
+    "Type": "Bingo::EC2::KeyPair::KeyName",
+    "DisplayName": "密钥",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE"
+  },
+  {
+    "Key": "disableApiTermination",
+    "Type": "Bingo::EC2::TerminateSet",
+    "DisplayName": "是否允许销毁",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "39308868-ff7d-453d-9052-7b80f32d225b"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE"
+  },
+  {
+    "Key": "volumeBuyNum",
+    "Type": "Number",
+    "DefaultValue": "10",
+    "DisplayName": "数据盘大小（G）"
+  },
+  {
+    "Key": "buyNum",
+    "Type": "String",
+    "DefaultValue": "1",
+    "DisplayName": "创建数量",
+    "AllowedCustomization": "FALSE"
+  },
+  {
+    "Key": "attachdir",
+    "Type": "String",
+    "DefaultValue": "/apps",
+    "DisplayName": "数据盘挂接目录",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE"
+  },
+  {
+    "Key": "size",
+    "Type": "String",
+    "DefaultValue": "Ref:volumeBuyNum",
+    "DisplayName": "数据盘大小",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "UIGroup": "volume"
+  },
+  {
+    "Key": "type",
+    "Type": "String",
+    "DefaultValue": "ext4",
+    "DisplayName": "数据盘格式",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/mongodb-linux-x86_64-3.4.18.tgz",
+    "Type": "String",
+    "DisplayName": "安装程序",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODB_PROGRAM"
+  },
+  {
+    "DefaultValue": "/usr/local/mongodb",
+    "Type": "String",
+    "DisplayName": "程序家目录",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODHOME"
+  },
+  {
+    "DefaultValue": "/var/log/mongo",
+    "Type": "String",
+    "DisplayName": "日志目录",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODLOGDIR"
+  },
+  {
+    "DefaultValue": "/tmp/mongo",
+    "Type": "String",
+    "DisplayName": "临时目录",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODB_TAR_DIR"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/mongodb_manage.sh",
+    "Type": "String",
+    "DisplayName": "rhel6/centos6管理程序",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODB_MANAGE"
+  },
+  {
+    "DefaultValue": "/data/db",
+    "Type": "String",
+    "DisplayName": "数据库目录",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODBPATH"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/mongodb_manage_rc7.sh",
+    "Type": "String",
+    "DisplayName": "rhel7/centos7管理程序",
+    "AllowedCustomization": true,
+    "NameSpace": "install",
+    "Key": "MONGODB_MANAGE7"
+  }
+]

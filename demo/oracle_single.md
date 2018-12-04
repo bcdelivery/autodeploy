@@ -1,1 +1,1 @@
-# oracle_adg.md
+# 设计方案
