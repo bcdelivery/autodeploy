@@ -9,4 +9,4 @@
     * [MongoDB单机](demo/mongodb_single.md)
     * [MongoDB集群](demo/mongodb_cluster.md)
 * 脚本管理
-    * [Linux格式化磁盘](demo/linux_format.md)
+    * [Linux格式化磁盘](demo/linux_volume_format.md)
