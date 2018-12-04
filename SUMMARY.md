@@ -7,6 +7,7 @@
     * [Oracle 单机](demo/oracle_single.md)
     * [Oracle Active Dataguard](demo/oracle_adg.md)
     * [MongoDB单机](demo/mongodb_single.md)
+    * [MongoDB主从](demo/mongodb_master-slave.md)
     * [MongoDB集群](demo/mongodb_cluster.md)
 * 脚本管理
     * [Linux格式化磁盘](demo/linux_volume_format.md)
