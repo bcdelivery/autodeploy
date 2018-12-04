@@ -1,11 +1,14 @@
 # 制作单机模式的MongoDB应用
 &emsp;&emsp;本教程是面向熟悉使用SIP4.1的管理人员，需要具备看懂简单Shell脚本的能力，对SIP4.1自动化部署流程有一定的了解。若您对SIP4.1不了解，建议先学习“SIP4.1使用手册”。  
-> SIP4.1使用手册（sip_user_guide_v4.1.0.20180930）：http://  
+> SIP4.1使用手册（sip_user_guide_v4.1.0.20180930）：  
+> http://  
 
 ### 一、安装包准备和上传
 1、下载MongoDB安装程序和脚本。  
-> MongoDB安装程序(mongodb.tar.gz)：http://  
-> MongoDB安装脚本(install_mongodb_single.sh)：http://  
+> MongoDB安装程序(mongodb.tar.gz)：  
+> http://  
+> MongoDB安装脚本(install_mongodb_single.sh)：  
+> https://github.com/bcdelivery/autodeploy/blob/master/scirpts/install_mongodb_single.sh  
 
 2、将下载好的MongoDB安装程序(mongodb.tar.gz)上传到s3，设置所有人权限可读，记录url。  
 
