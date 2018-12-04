@@ -5,7 +5,7 @@
 ### 一、安装包准备和上传
 1、下载MongoDB安装程序和脚本。  
 > MongoDB安装程序(mongodb.tar.gz)：http://  
-> MongoDB安装脚本(install_mongodb_single.sh)：http://  
+> MongoDB安装脚本(install_mongodb_single.sh)：https://github.com/bcdelivery/autodeploy/blob/master/scirpts/install_mongodb_single.sh  
 
 2、将下载好的MongoDB安装程序(mongodb.tar.gz)上传到s3，设置所有人权限可读，记录url。  
 
