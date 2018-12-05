@@ -276,12 +276,28 @@ MONGODB_MANAGE7=${MONGODB_MANAGE7}
     "Key": "MONGODB_TAR_DIR"
   },
   {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-6.el7.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived7",
+    "AllowedCustomization": true,
+    "NameSpace": "master_install",
+    "Key": "KEEPALIVED7"
+  },
+  {
     "DefaultValue": "/tmp/mongodb/mongodb_manage_ms.sh",
     "Type": "String",
     "DisplayName": "管理程序",
     "AllowedCustomization": true,
     "NameSpace": "master_install",
     "Key": "MONGODB_MANAGE"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-5.el6_6.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived6",
+    "AllowedCustomization": true,
+    "NameSpace": "master_install",
+    "Key": "KEEPALIVED6"
   },
   {
     "DefaultValue": "/data/db",
@@ -332,12 +348,28 @@ MONGODB_MANAGE7=${MONGODB_MANAGE7}
     "Key": "MONGODB_TAR_DIR"
   },
   {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-6.el7.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived7",
+    "AllowedCustomization": true,
+    "NameSpace": "slave_install",
+    "Key": "KEEPALIVED7"
+  },
+  {
     "DefaultValue": "/tmp/mongodb/mongodb_manage_ms.sh",
     "Type": "String",
     "DisplayName": "管理程序",
     "AllowedCustomization": true,
     "NameSpace": "slave_install",
     "Key": "MONGODB_MANAGE"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-5.el6_6.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived6",
+    "AllowedCustomization": true,
+    "NameSpace": "slave_install",
+    "Key": "KEEPALIVED6"
   },
   {
     "DefaultValue": "/data/db",
@@ -354,10 +386,19 @@ MONGODB_MANAGE7=${MONGODB_MANAGE7}
     "AllowedCustomization": true,
     "NameSpace": "slave_install",
     "Key": "SSHPASS"
+  },
+  {
+    "Key": "vipType",
+    "Type": "String",
+    "DefaultValue": "KeepAlive",
+    "DisplayName": "虚拟IP类型",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "UIType": "text"
   }
 ```
 注意：该json中相关变量的值需要与mongodb_master和mongodb_slave脚本中变量内容一致。  
-
+> 补充：上述json中我们单独加了关于vip的配置。  
 > 重要：注意json的格式！  
 
 ![](../asset/mongodb_ms/390C3374888D2AEAD4EC42D7C8B9ABD0.png)
