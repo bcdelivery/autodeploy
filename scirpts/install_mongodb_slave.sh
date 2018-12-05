@@ -3,15 +3,15 @@ clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename "$0")                                #当前脚本文件名
 SCRIPTPATH=$(cd $(dirname "$0");pwd)                       #当前脚本所在绝对目录
-MONGODHOME=/usr/local/mongodb                              #mongodb家目录
-MONGODBPATH=/data/db                                       #mongodb数据库目录
+MONGODHOME=${MONGODHOME}                                   #mongodb家目录
+MONGODBPATH=${MONGODBPATH}                                 #mongodb数据库目录
 MONGODCONFDIR=$MONGODHOME/conf                             #mongodb配置文件目录
-MONGODLOGDIR=/var/log/mongo                                #mongodb日志目录
+MONGODLOGDIR=${MONGODLOGDIR}                               #mongodb日志目录
 MONGODLOG=$MONGODLOGDIR/mongo.log                          #mongodb日志文件
-MONGODB_PROGRAM=mongodb-linux-x86_64-3.4.18.tgz            #mongodb安装程序
-MONGODB_MANAGE=mongodb_manage_ms.sh                        #mongodb管理程序
-MONGODB_TAR_DIR=/tmp/mongo                                 #mongodb安装临时目录
-SSHPASS=sshpass-1.05-9.1.x86_64.rpm                        #sshpass安装包
+MONGODB_PROGRAM=${MONGODB_PROGRAM}                         #mongodb安装程序
+MONGODB_MANAGE=${MONGODB_MANAGE}                           #mongodb管理程序
+MONGODB_TAR_DIR=${MONGODB_TAR_DIR}                         #mongodb安装临时目录
+SSHPASS=${SSHPASS}                                         #sshpass安装包
 
 #脚本是否执行正确
 if [ $# != 0 ]
@@ -175,6 +175,7 @@ rm -rf $MONGODB_TAR_DIR                           #删除临时目录
 grep "$MONGODHOME/bin" /etc/profile > /dev/null   #判断/etc/profile是否已经含有mongodb的环境变量
 if [ $? -eq 0 ];then
     echo "The MongoDB variable is already configured." > /dev/null
+	source /etc/profile
 else
     echo "export PATH=$MONGODHOME/bin:$PATH" >> /etc/profile
     source /etc/profile
@@ -194,24 +195,24 @@ EOF
 #config ssh
 sshconfig
 
-#install keepalived
-yum install keepalived nmap -y
+#install keepalived nmap openssh openssh-clients
+yum install keepalived nmap openssh openssh-clients -y
 if [ $? -eq 0 ];then
-    echo "install keepalived done" > /dev/null
+    echo "install keepalived nmap openssh openssh-clients done" > /dev/null
 else
     clear
-    echo "install keepalived failed,maybe no yum"
+    echo "install keepalived nmap openssh openssh-clients failed,maybe no yum"
     exit 1
 fi
 
 #heartbeat detection
-rpm -ivh sshpass-1.05-9.1.x86_64.rpm
+rpm -ivh $SSHPASS
 cat > $MONGODHOME/checkMongoDBport.sh << "EOF"
 #!/bin/bash
 #checkMongoDBport status
 PORT=27017
-HOST=192.168.88.128          #变量调用
-PASSWORD=123456              #变量调用
+HOST=master_ip                    #变量调用
+PASSWORD=master_pass              #变量调用
 nmap localhost -p $PORT | grep "$PORT/tcp open" > /dev/null
 if [ $? -ne 0 ];then
     sleep 5
@@ -221,11 +222,13 @@ if [ $? -ne 0 ];then
     service keepalived stop
     grep -w "master" /usr/local/mongodb/flag > /dev/null    #判断当前角色，若为master，则执行下面的sshpass，若为slave，则不执行sshpass：
     if [ $? -eq 0 ];then
-        sshpass -p "$PASSWORD" ssh root@$HOST "/etc/init.d/mongod stop;/etc/init.d/mongod start_master"    #因为上述判断本机是master则远程是slave，此时需要远程的slave成为master
+        sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no root@$HOST "/etc/init.d/mongod stop;echo "master" > /usr/local/mongodb/flag;/etc/init.d/mongod start_master"    #因为上述判断本机是master则远程是slave，此时需要远程的slave成为master
         fi
     fi
 fi
 EOF
+sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODHOME/checkMongoDBport.sh    #获取slave的ip和密码并填入checkMongoDBport.sh中
+sed -i 's/master_pass/${outputs.master.password}/g' $MONGODHOME/checkMongoDBport.sh
 chmod +x $MONGODHOME/checkMongoDBport.sh
 
 #init sysctl.conf
@@ -280,11 +283,12 @@ vrrp_instance VI_1 {
         auth_pass 1111
     }
     virtual_ipaddress {
-        192.168.88.66    #变量调用
+        vip    #变量调用
     }
 }
 EOF
 sed -i "s#/usr/local/mongodb#$MONGODHOME/g" /etc/keepalived/keepalived.conf
+sed -i 's/vip/${outputs.vip.privateIpAddress}/g' /etc/keepalived/keepalived.conf
 
 #config mongodb manage script
 config_manage_script()
@@ -317,8 +321,18 @@ echo "How to manage MongoDB:/etc/init.d/mongod start_master|start_slave|stop|sta
 echo "****************************************************"
 }
 
-#start mongodb
+#config mongodb manage script
 config_manage_script
+#判断$MONGODHOME是否默认为/usr/local/mongodb
+if [ $MONGODHOME == "/usr/local/mongodb" ];then
+    echo "same ok" > /dev/null
+else
+    echo "The specified directory is inconsistent with the mongodb_manage" > /dev/null
+    sed -i "6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#" $MONGODB_MANAGE > /dev/null    #修改mongodb管理程序的MONGOHOME目录为正确的
+fi
+sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODB_MANAGE
+
+#start mongodb
 #第一次启动slave不能直接用：/etc/init.d/mongod start_slave
 #$MONGODHOME/bin/mongod -f $MONGODHOME/conf/mongo.conf --slave --source 192.168.88.128:27017;echo "slave" > $MONGODHOME/flag
 echo "slave" > $MONGODHOME/flag
@@ -327,7 +341,7 @@ echo "slave" > $MONGODHOME/flag
 #start keepalived
 sleep 2s
 service keepalived start
-echo "tip:no set keepalived boot with system"
+echo "Suggest:no set keepalived boot with system"
 
 
 
