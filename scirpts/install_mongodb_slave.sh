@@ -12,6 +12,8 @@ MONGODB_PROGRAM=${MONGODB_PROGRAM}                         #mongodb安装程序
 MONGODB_MANAGE=${MONGODB_MANAGE}                           #mongodb管理程序
 MONGODB_TAR_DIR=${MONGODB_TAR_DIR}                         #mongodb安装临时目录
 SSHPASS=${SSHPASS}                                         #sshpass安装包
+KEEPALIVED6=${KEEPALIVED6}                                 #keepalived版本6
+KEEPALIVED7=${KEEPALIVED7}                                 #keepalived版本7
 
 #脚本是否执行正确
 if [ $# != 0 ]
@@ -19,6 +21,26 @@ then
     echo "Usage: sh $SCRIPTPATH/$SCRIPTNAME"
 	exit
 fi
+
+#判断当前系统版本
+sys_ver()
+{
+if [[ -f /etc/redhat-release ]]; then
+  ver0="$(cat /etc/redhat-release |awk -Frelease '{print $2}' |awk '{print $1}')"
+  ver="$(echo ${ver0%%.*})"
+  if [ "$ver" = "7" ]; then
+    Release="rhel7"
+  elif [ "$ver" = "6" ]; then
+    Release="rhel6"
+  else
+    echo "不支持的操作系统，需要使用centos或者rhel6、7版本"
+    exit 1
+  fi
+else
+    echo "不支持的操作系统，需要使用centos或者rhel6、7版本"
+    exit 1
+fi
+}
 
 #ssh config:为checkMongoDBport.sh的sshpass准备
 sshconfig()
@@ -196,12 +218,29 @@ EOF
 sshconfig
 
 #install keepalived nmap openssh openssh-clients
-yum install keepalived nmap openssh openssh-clients -y
-if [ $? -eq 0 ];then
-    echo "install keepalived nmap openssh openssh-clients done" > /dev/null
+sys_ver
+if [ "$Release" == "rhel6" ];then
+    yum install $KEEPALIVED6 -y
+    if [ $? -eq 0 ];then
+        echo "install keepalived done" > /dev/null
+    else
+        echo "install keepalived failed,maybe no yum"
+        exit 1
+    fi
 else
-    clear
-    echo "install keepalived nmap openssh openssh-clients failed,maybe no yum"
+    yum install $KEEPALIVED7 -y
+    if [ $? -eq 0 ];then
+        echo "install keepalived done" > /dev/null
+    else
+        echo "install keepalived failed,maybe no yum"
+        exit 1
+    fi
+fi
+yum install nmap openssh openssh-clients -y
+if [ $? -eq 0 ];then
+    echo "install nmap openssh openssh-clients done" > /dev/null
+else
+    echo "install nmap openssh openssh-clients failed,maybe no yum"
     exit 1
 fi
 

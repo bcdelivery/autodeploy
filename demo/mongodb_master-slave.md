@@ -276,12 +276,28 @@ MONGODB_MANAGE7=${MONGODB_MANAGE7}
     "Key": "MONGODB_TAR_DIR"
   },
   {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-6.el7.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived7",
+    "AllowedCustomization": true,
+    "NameSpace": "master_install",
+    "Key": "KEEPALIVED7"
+  },
+  {
     "DefaultValue": "/tmp/mongodb/mongodb_manage_ms.sh",
     "Type": "String",
     "DisplayName": "管理程序",
     "AllowedCustomization": true,
     "NameSpace": "master_install",
     "Key": "MONGODB_MANAGE"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-5.el6_6.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived6",
+    "AllowedCustomization": true,
+    "NameSpace": "master_install",
+    "Key": "KEEPALIVED6"
   },
   {
     "DefaultValue": "/data/db",
@@ -332,12 +348,28 @@ MONGODB_MANAGE7=${MONGODB_MANAGE7}
     "Key": "MONGODB_TAR_DIR"
   },
   {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-6.el7.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived7",
+    "AllowedCustomization": true,
+    "NameSpace": "slave_install",
+    "Key": "KEEPALIVED7"
+  },
+  {
     "DefaultValue": "/tmp/mongodb/mongodb_manage_ms.sh",
     "Type": "String",
     "DisplayName": "管理程序",
     "AllowedCustomization": true,
     "NameSpace": "slave_install",
     "Key": "MONGODB_MANAGE"
+  },
+  {
+    "DefaultValue": "/tmp/mongodb/keepalived-1.2.13-5.el6_6.x86_64.rpm",
+    "Type": "String",
+    "DisplayName": "keepalived6",
+    "AllowedCustomization": true,
+    "NameSpace": "slave_install",
+    "Key": "KEEPALIVED6"
   },
   {
     "DefaultValue": "/data/db",
