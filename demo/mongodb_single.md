@@ -86,9 +86,8 @@ MONGODB_TAR_DIR=${MONGODB_TAR_DIR}
 ![](../asset/mongodb_single/e5aeadde2e3fda687139a8dd237f2ce6.png)
 
 8、点击“通用指令”，根据需要填写控件的相关信息：
-注意：红色方框内的内容必填，编号、名称都用英文表示，**实例ID**和**实例编号**中的填写格式是：  
+注意：红色方框内的内容必填，编号、名称都用英文表示，**实例ID**的填写格式是：  
 > 实例ID：${outputs.<font color=#7FFF00>single</font>.instanceId}  
-> 实例编号：${outputs.<font color=#7FFF00>single</font>.instanceCode}
 绿色标记的是**“实例”控件**中的**“编号”**，必须一致。  
 
 ![](../asset/mongodb_single/4a59fd1fa0e9fdd81ae16ee5f59570eb.png)
@@ -234,10 +233,11 @@ MONGODB_MANAGE7=\${MONGODB_MANAGE7}
 
 ![](../asset/mongodb_single/8ee3a99809a93b185bca6f5f43b82588.png)
 
-### 四、测试部署结果
+### 四、测试和管理
 1、测试MongoDB的单机模式连接：  
 
 ![](../asset/mongodb_single/2d4879ede36561878aa7683c414efe19.png)
 
-2、结束  
+2、管理MongoDB：  
+```/etc/init.d/mongod start|stop|restart|status```  
 

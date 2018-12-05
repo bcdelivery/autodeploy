@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="mongodb_cluster.md" />
+    <link rel="next" href="mongodb_master-slave.html" />
     
     
     <link rel="prev" href="oracle_adg.html" />
@@ -194,7 +194,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="mongodb_cluster.md">
+        <li class="chapter " data-level="1.4.5" data-path="mongodb_master-slave.html">
+            
+                <a href="mongodb_master-slave.html">
+            
+                    
+                    MongoDB主从
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="mongodb_cluster.md">
             
                 <span>
             
@@ -348,10 +361,9 @@ MONGODB_TAR_DIR=${MONGODB_TAR_DIR}
 </blockquote>
 <p><img src="../asset/mongodb_single/e5aeadde2e3fda687139a8dd237f2ce6.png" alt=""></p>
 <p>8&#x3001;&#x70B9;&#x51FB;&#x201C;&#x901A;&#x7528;&#x6307;&#x4EE4;&#x201D;&#xFF0C;&#x6839;&#x636E;&#x9700;&#x8981;&#x586B;&#x5199;&#x63A7;&#x4EF6;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF1A;
-&#x6CE8;&#x610F;&#xFF1A;&#x7EA2;&#x8272;&#x65B9;&#x6846;&#x5185;&#x7684;&#x5185;&#x5BB9;&#x5FC5;&#x586B;&#xFF0C;&#x7F16;&#x53F7;&#x3001;&#x540D;&#x79F0;&#x90FD;&#x7528;&#x82F1;&#x6587;&#x8868;&#x793A;&#xFF0C;<strong>&#x5B9E;&#x4F8B;ID</strong>&#x548C;<strong>&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;</strong>&#x4E2D;&#x7684;&#x586B;&#x5199;&#x683C;&#x5F0F;&#x662F;&#xFF1A;  </p>
+&#x6CE8;&#x610F;&#xFF1A;&#x7EA2;&#x8272;&#x65B9;&#x6846;&#x5185;&#x7684;&#x5185;&#x5BB9;&#x5FC5;&#x586B;&#xFF0C;&#x7F16;&#x53F7;&#x3001;&#x540D;&#x79F0;&#x90FD;&#x7528;&#x82F1;&#x6587;&#x8868;&#x793A;&#xFF0C;<strong>&#x5B9E;&#x4F8B;ID</strong>&#x7684;&#x586B;&#x5199;&#x683C;&#x5F0F;&#x662F;&#xFF1A;  </p>
 <blockquote>
-<p>&#x5B9E;&#x4F8B;ID&#xFF1A;${outputs.<font color="#7FFF00">single</font>.instanceId}<br>&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;&#xFF1A;${outputs.<font color="#7FFF00">single</font>.instanceCode}
-&#x7EFF;&#x8272;&#x6807;&#x8BB0;&#x7684;&#x662F;<strong>&#x201C;&#x5B9E;&#x4F8B;&#x201D;&#x63A7;&#x4EF6;</strong>&#x4E2D;&#x7684;<strong>&#x201C;&#x7F16;&#x53F7;&#x201D;</strong>&#xFF0C;&#x5FC5;&#x987B;&#x4E00;&#x81F4;&#x3002;  </p>
+<p>&#x5B9E;&#x4F8B;ID&#xFF1A;${outputs.<font color="#7FFF00">single</font>.instanceId}<br>&#x7EFF;&#x8272;&#x6807;&#x8BB0;&#x7684;&#x662F;<strong>&#x201C;&#x5B9E;&#x4F8B;&#x201D;&#x63A7;&#x4EF6;</strong>&#x4E2D;&#x7684;<strong>&#x201C;&#x7F16;&#x53F7;&#x201D;</strong>&#xFF0C;&#x5FC5;&#x987B;&#x4E00;&#x81F4;&#x3002;  </p>
 </blockquote>
 <p><img src="../asset/mongodb_single/4a59fd1fa0e9fdd81ae16ee5f59570eb.png" alt=""></p>
 <p>9&#x3001;&#x70B9;&#x51FB;&#x201C;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x201D;&#xFF0C;&#x9009;&#x62E9;&#x683C;&#x5F0F;&#x5316;&#x6302;&#x8F7D;&#x5B58;&#x50A8;&#x5377;&#x7684;&#x811A;&#x672C;<strong>linux_volume_attach</strong>&#xFF1A;  </p>
@@ -466,10 +478,10 @@ MONGODB_MANAGE7=\${MONGODB_MANAGE7}
 <p><img src="../asset/mongodb_single/fd6f405f85edf2b279b7bf85fef53e8d.png" alt=""></p>
 <p>7&#x3001;&#x6700;&#x540E;&#x4FDD;&#x5B58;&#x8BE5;&#x53C2;&#x6570;&#x6A21;&#x677F;&#xFF1A;</p>
 <p><img src="../asset/mongodb_single/8ee3a99809a93b185bca6f5f43b82588.png" alt=""></p>
-<h3 id="&#x56DB;&#x3001;&#x6D4B;&#x8BD5;&#x90E8;&#x7F72;&#x7ED3;&#x679C;">&#x56DB;&#x3001;&#x6D4B;&#x8BD5;&#x90E8;&#x7F72;&#x7ED3;&#x679C;</h3>
+<h3 id="&#x56DB;&#x3001;&#x6D4B;&#x8BD5;&#x548C;&#x7BA1;&#x7406;">&#x56DB;&#x3001;&#x6D4B;&#x8BD5;&#x548C;&#x7BA1;&#x7406;</h3>
 <p>1&#x3001;&#x6D4B;&#x8BD5;MongoDB&#x7684;&#x5355;&#x673A;&#x6A21;&#x5F0F;&#x8FDE;&#x63A5;&#xFF1A;  </p>
 <p><img src="../asset/mongodb_single/2d4879ede36561878aa7683c414efe19.png" alt=""></p>
-<p>2&#x3001;&#x7ED3;&#x675F;  </p>
+<p>2&#x3001;&#x7BA1;&#x7406;MongoDB&#xFF1A;<br><code>/etc/init.d/mongod start|stop|restart|status</code>  </p>
 
                                 
                                 </section>
@@ -502,7 +514,7 @@ MONGODB_MANAGE7=\${MONGODB_MANAGE7}
                 </a>
                 
                 
-                <a href="mongodb_cluster.md" class="navigation navigation-next " aria-label="Next page: MongoDB集群">
+                <a href="mongodb_master-slave.html" class="navigation navigation-next " aria-label="Next page: MongoDB主从">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -513,7 +525,7 @@ MONGODB_MANAGE7=\${MONGODB_MANAGE7}
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MongoDB单机","level":"1.4.4","depth":2,"next":{"title":"MongoDB集群","level":"1.4.5","depth":2,"path":"demo/mongodb_cluster.md","ref":"demo/mongodb_cluster.md","articles":[]},"previous":{"title":"Oracle Active Dataguard","level":"1.4.3","depth":2,"path":"demo/oracle_adg.md","ref":"demo/oracle_adg.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mongodb_single.md","mtime":"2018-12-04T07:13:54.450Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-04T07:15:10.221Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MongoDB单机","level":"1.4.4","depth":2,"next":{"title":"MongoDB主从","level":"1.4.5","depth":2,"path":"demo/mongodb_master-slave.md","ref":"demo/mongodb_master-slave.md","articles":[]},"previous":{"title":"Oracle Active Dataguard","level":"1.4.3","depth":2,"path":"demo/oracle_adg.md","ref":"demo/oracle_adg.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mongodb_single.md","mtime":"2018-12-05T02:55:41.224Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-05T05:09:00.906Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -521,10 +533,6 @@ MONGODB_MANAGE7=\${MONGODB_MANAGE7}
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
