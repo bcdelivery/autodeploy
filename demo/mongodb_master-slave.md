@@ -385,12 +385,12 @@ if [ $? -ne 0 ];then
     nmap localhost -p $PORT | grep "$PORT/tcp open"
     if [ $? -ne 0 ];then
     /etc/init.d/mongod stop > /dev/null
-    service keepalived stop
     grep -w "master" /usr/local/mongodb/flag > /dev/null    #判断当前角色，若为master，则执行下面的sshpass，若为slave，则不执行sshpass：
     if [ $? -eq 0 ];then
         sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no root@$HOST "/etc/init.d/mongod stop;echo "master" > /usr/local/mongodb/flag;/etc/init.d/mongod start_master"    #因为上述判断本机是master则远程是slave，此时需要远程的slave成为master
         fi
     fi
+    service keepalived stop
 fi
 EOF
 sed -i 's/slave_ip/${outputs.slave.privateIp}/g' $MONGODHOME/checkMongoDBport.sh    #获取slave的ip和密码并填入checkMongoDBport.sh中
@@ -784,12 +784,12 @@ if [ $? -ne 0 ];then
     nmap localhost -p $PORT | grep "$PORT/tcp open"
     if [ $? -ne 0 ];then
     /etc/init.d/mongod stop > /dev/null
-    service keepalived stop
     grep -w "master" /usr/local/mongodb/flag > /dev/null    #判断当前角色，若为master，则执行下面的sshpass，若为slave，则不执行sshpass：
     if [ $? -eq 0 ];then
         sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no root@$HOST "/etc/init.d/mongod stop;echo "master" > /usr/local/mongodb/flag;/etc/init.d/mongod start_master"    #因为上述判断本机是master则远程是slave，此时需要远程的slave成为master
         fi
     fi
+    service keepalived stop
 fi
 EOF
 sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODHOME/checkMongoDBport.sh    #获取slave的ip和密码并填入checkMongoDBport.sh中
@@ -1121,3 +1121,4 @@ exit 0
 2、管理MongoDB：  
 ```/etc/init.d/mongod start_master|start_slave|stop|status```
 
+3、说明：MongoDB的主从模式部署方案中使用了VIP的功能，使用的高可用软件是keepalived，脚本中默认没有将该软件设置为开机自启（chkconfig keepalived off或systemctl disable keepalived），也不建议设置成开机自启，因为keepalived.conf调用了checkMongoDBport.sh，该脚本随keepalived一起运行，每隔3秒执行一遍，若check发现当前系统mongodb没有启动且本机为master，则会认为当前系统的master已死，接着远程到slave上，让其成为master。该说明主要表达的是当mongodb主从环境意外断电恢复后，需要手动修复mongodb主从环境，顺序是先启动master和slave，再启动keepalived。

@@ -638,12 +638,12 @@ if [ $? -ne 0 ];then
     nmap localhost -p $PORT | grep &quot;$PORT/tcp open&quot;
     if [ $? -ne 0 ];then
     /etc/init.d/mongod stop &gt; /dev/null
-    service keepalived stop
     grep -w &quot;master&quot; /usr/local/mongodb/flag &gt; /dev/null    #&#x5224;&#x65AD;&#x5F53;&#x524D;&#x89D2;&#x8272;&#xFF0C;&#x82E5;&#x4E3A;master&#xFF0C;&#x5219;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;sshpass&#xFF0C;&#x82E5;&#x4E3A;slave&#xFF0C;&#x5219;&#x4E0D;&#x6267;&#x884C;sshpass&#xFF1A;
     if [ $? -eq 0 ];then
         sshpass -p &quot;$PASSWORD&quot; ssh -o StrictHostKeyChecking=no root@$HOST &quot;/etc/init.d/mongod stop;echo &quot;master&quot; &gt; /usr/local/mongodb/flag;/etc/init.d/mongod start_master&quot;    #&#x56E0;&#x4E3A;&#x4E0A;&#x8FF0;&#x5224;&#x65AD;&#x672C;&#x673A;&#x662F;master&#x5219;&#x8FDC;&#x7A0B;&#x662F;slave&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x8FDC;&#x7A0B;&#x7684;slave&#x6210;&#x4E3A;master
         fi
     fi
+    service keepalived stop
 fi
 EOF
 sed -i &apos;s/slave_ip/${outputs.slave.privateIp}/g&apos; $MONGODHOME/checkMongoDBport.sh    #&#x83B7;&#x53D6;slave&#x7684;ip&#x548C;&#x5BC6;&#x7801;&#x5E76;&#x586B;&#x5165;checkMongoDBport.sh&#x4E2D;
@@ -1032,12 +1032,12 @@ if [ $? -ne 0 ];then
     nmap localhost -p $PORT | grep &quot;$PORT/tcp open&quot;
     if [ $? -ne 0 ];then
     /etc/init.d/mongod stop &gt; /dev/null
-    service keepalived stop
     grep -w &quot;master&quot; /usr/local/mongodb/flag &gt; /dev/null    #&#x5224;&#x65AD;&#x5F53;&#x524D;&#x89D2;&#x8272;&#xFF0C;&#x82E5;&#x4E3A;master&#xFF0C;&#x5219;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;sshpass&#xFF0C;&#x82E5;&#x4E3A;slave&#xFF0C;&#x5219;&#x4E0D;&#x6267;&#x884C;sshpass&#xFF1A;
     if [ $? -eq 0 ];then
         sshpass -p &quot;$PASSWORD&quot; ssh -o StrictHostKeyChecking=no root@$HOST &quot;/etc/init.d/mongod stop;echo &quot;master&quot; &gt; /usr/local/mongodb/flag;/etc/init.d/mongod start_master&quot;    #&#x56E0;&#x4E3A;&#x4E0A;&#x8FF0;&#x5224;&#x65AD;&#x672C;&#x673A;&#x662F;master&#x5219;&#x8FDC;&#x7A0B;&#x662F;slave&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x8FDC;&#x7A0B;&#x7684;slave&#x6210;&#x4E3A;master
         fi
     fi
+    service keepalived stop
 fi
 EOF
 sed -i &apos;s/master_ip/${outputs.master.privateIp}/g&apos; $MONGODHOME/checkMongoDBport.sh    #&#x83B7;&#x53D6;slave&#x7684;ip&#x548C;&#x5BC6;&#x7801;&#x5E76;&#x586B;&#x5165;checkMongoDBport.sh&#x4E2D;
@@ -1340,6 +1340,7 @@ exit 0
 <p>1&#x3001;&#x6D4B;&#x8BD5;MongoDB&#x7684;&#x4E3B;&#x4ECE;&#x6A21;&#x5F0F;&#x8FDE;&#x63A5;&#xFF1A;<br><strong>&#x8BE6;&#x7EC6;&#x5F85;&#x8865;&#x5145;&#xFF1A;</strong>  </p>
 <p><img src="../asset/mongodb_single/2d4879ede36561878aa7683c414efe19.png" alt=""></p>
 <p>2&#x3001;&#x7BA1;&#x7406;MongoDB&#xFF1A;<br><code>/etc/init.d/mongod start_master|start_slave|stop|status</code></p>
+<p>3&#x3001;&#x8BF4;&#x660E;&#xFF1A;MongoDB&#x7684;&#x4E3B;&#x4ECE;&#x6A21;&#x5F0F;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#x4E2D;&#x4F7F;&#x7528;&#x4E86;VIP&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x9AD8;&#x53EF;&#x7528;&#x8F6F;&#x4EF6;&#x662F;keepalived&#xFF0C;&#x811A;&#x672C;&#x4E2D;&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;&#x5C06;&#x8BE5;&#x8F6F;&#x4EF6;&#x8BBE;&#x7F6E;&#x4E3A;&#x5F00;&#x673A;&#x81EA;&#x542F;&#xFF08;chkconfig keepalived off&#x6216;systemctl disable keepalived&#xFF09;&#xFF0C;&#x4E5F;&#x4E0D;&#x5EFA;&#x8BAE;&#x8BBE;&#x7F6E;&#x6210;&#x5F00;&#x673A;&#x81EA;&#x542F;&#xFF0C;&#x56E0;&#x4E3A;keepalived.conf&#x8C03;&#x7528;&#x4E86;checkMongoDBport.sh&#xFF0C;&#x8BE5;&#x811A;&#x672C;&#x968F;keepalived&#x4E00;&#x8D77;&#x8FD0;&#x884C;&#xFF0C;&#x6BCF;&#x9694;3&#x79D2;&#x6267;&#x884C;&#x4E00;&#x904D;&#xFF0C;&#x82E5;check&#x53D1;&#x73B0;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;mongodb&#x6CA1;&#x6709;&#x542F;&#x52A8;&#x4E14;&#x672C;&#x673A;&#x4E3A;master&#xFF0C;&#x5219;&#x4F1A;&#x8BA4;&#x4E3A;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x7684;master&#x5DF2;&#x6B7B;&#xFF0C;&#x63A5;&#x7740;&#x8FDC;&#x7A0B;&#x5230;slave&#x4E0A;&#xFF0C;&#x8BA9;&#x5176;&#x6210;&#x4E3A;master&#x3002;&#x8BE5;&#x8BF4;&#x660E;&#x4E3B;&#x8981;&#x8868;&#x8FBE;&#x7684;&#x662F;&#x5F53;mongodb&#x4E3B;&#x4ECE;&#x73AF;&#x5883;&#x610F;&#x5916;&#x65AD;&#x7535;&#x6062;&#x590D;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x4FEE;&#x590D;mongodb&#x4E3B;&#x4ECE;&#x73AF;&#x5883;&#xFF0C;&#x987A;&#x5E8F;&#x662F;&#x5148;&#x542F;&#x52A8;master&#x548C;slave&#xFF0C;&#x518D;&#x542F;&#x52A8;keepalived&#x3002;</p>
 
                                 
                                 </section>
@@ -1383,7 +1384,7 @@ exit 0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MongoDB主从","level":"1.4.5","depth":2,"next":{"title":"MongoDB集群","level":"1.4.6","depth":2,"path":"demo/mongodb_cluster.md","ref":"demo/mongodb_cluster.md","articles":[]},"previous":{"title":"MongoDB单机","level":"1.4.4","depth":2,"path":"demo/mongodb_single.md","ref":"demo/mongodb_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mongodb_master-slave.md","mtime":"2018-12-06T04:55:39.338Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-06T04:58:56.414Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MongoDB主从","level":"1.4.5","depth":2,"next":{"title":"MongoDB集群","level":"1.4.6","depth":2,"path":"demo/mongodb_cluster.md","ref":"demo/mongodb_cluster.md","articles":[]},"previous":{"title":"MongoDB单机","level":"1.4.4","depth":2,"path":"demo/mongodb_single.md","ref":"demo/mongodb_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mongodb_master-slave.md","mtime":"2018-12-06T05:14:54.209Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-06T05:15:18.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
