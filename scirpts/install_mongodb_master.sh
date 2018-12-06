@@ -2,7 +2,7 @@
 clear
 wget http://10.201.83.1:81/data/mongodb_ms.tar.gz -O /tmp/mongodb_ms.tar.gz
 tar -zxvf /tmp/mongodb_ms.tar.gz -C /tmp
-echo "tar done" && exit 0
+echo "tar done"
 clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename "$0")                                #当前脚本文件名
@@ -385,5 +385,5 @@ echo "master" > $MONGODHOME/flag
 sleep 2s
 service keepalived start
 echo "Suggest:no set keepalived boot with system"
-
+exit 0
 
