@@ -125,7 +125,7 @@
 clear
 wget http://10.201.83.1:81/data/mongodb_ms.tar.gz -O /tmp/mongodb_ms.tar.gz
 tar -zxvf /tmp/mongodb_ms.tar.gz -C /tmp
-echo "tar done" && exit 0
+echo "tar done"
 clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename "$0")                                #当前脚本文件名
@@ -453,7 +453,7 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-sed -i "s#/usr/local/mongodb#$MONGODHOME/g" /etc/keepalived/keepalived.conf
+sed -i "s#/usr/local/mongodb#$MONGODHOME#g" /etc/keepalived/keepalived.conf
 sed -i 's/vip/${outputs.vip.privateIpAddress}/g' /etc/keepalived/keepalived.conf
 
 #config mongodb manage script
@@ -494,9 +494,9 @@ if [ $MONGODHOME == "/usr/local/mongodb" ];then
     echo "same ok" > /dev/null
 else
     echo "The specified directory is inconsistent with the mongodb_manage" > /dev/null
-    sed -i "6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#" $MONGODB_MANAGE > /dev/null    #修改mongodb管理程序的MONGOHOME目录为正确的
+    sed -i "6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#" $MONGODHOME/mongodb_manage_ms.sh > /dev/null    #修改mongodb管理程序的MONGOHOME目录为正确的
 fi
-sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODB_MANAGE
+sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODHOME/mongodb_manage_ms.sh
 
 #start mongodb
 #第一次启动master不能直接用：/etc/init.d/mongod start_master
@@ -508,6 +508,7 @@ echo "master" > $MONGODHOME/flag
 sleep 2s
 service keepalived start
 echo "Suggest:no set keepalived boot with system"
+exit 0
 ```
 
 18、点击“自定义指令slave_install”，根据需要填写控件的相关信息：  
@@ -523,7 +524,7 @@ echo "Suggest:no set keepalived boot with system"
 clear
 wget http://10.201.83.1:81/data/mongodb_ms.tar.gz -O /tmp/mongodb_ms.tar.gz
 tar -zxvf /tmp/mongodb_ms.tar.gz -C /tmp
-echo "tar done" && exit 0
+echo "tar done"
 clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename "$0")                                #当前脚本文件名
@@ -851,7 +852,7 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-sed -i "s#/usr/local/mongodb#$MONGODHOME/g" /etc/keepalived/keepalived.conf
+sed -i "s#/usr/local/mongodb#$MONGODHOME#g" /etc/keepalived/keepalived.conf
 sed -i 's/vip/${outputs.vip.privateIpAddress}/g' /etc/keepalived/keepalived.conf
 
 #config mongodb manage script
@@ -892,9 +893,9 @@ if [ $MONGODHOME == "/usr/local/mongodb" ];then
     echo "same ok" > /dev/null
 else
     echo "The specified directory is inconsistent with the mongodb_manage" > /dev/null
-    sed -i "6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#" $MONGODB_MANAGE > /dev/null    #修改mongodb管理程序的MONGOHOME目录为正确的
+    sed -i "6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#" $MONGODHOME/mongodb_manage_ms.sh > /dev/null    #修改mongodb管理程序的MONGOHOME目录为正确的
 fi
-sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODB_MANAGE
+sed -i 's/master_ip/${outputs.master.privateIp}/g' $MONGODHOME/mongodb_manage_ms.sh
 
 #start mongodb
 #第一次启动slave不能直接用：/etc/init.d/mongod start_slave
@@ -906,6 +907,7 @@ echo "slave" > $MONGODHOME/flag
 sleep 2s
 service keepalived start
 echo "Suggest:no set keepalived boot with system"
+exit 0
 ```
 
 20、点击“结束事件”，根据需要填写控件的相关信息：  
