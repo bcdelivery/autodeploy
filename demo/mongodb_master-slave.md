@@ -933,7 +933,7 @@ echo "Suggest:no set keepalived boot with system"
 ![](../asset/mongodb_ms/c05455a782143640960e3bdbd314d292.png)
 
 4、修改镜像的默认值为当前云平台“可支持自动化部署”的镜像ID：  
-
+> 注意：该镜像必须含源！
 > tip：这里也能开启“是为允许用户修改”为“TRUE”，这样用户在部署的时候就可以指定镜像。  
 
 ![](../asset/mongodb_ms/88ed2d19ffa8fb2abc0d4dc7cb4538bf.png)
