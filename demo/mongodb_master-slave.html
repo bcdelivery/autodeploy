@@ -378,7 +378,7 @@
 clear
 wget http://10.201.83.1:81/data/mongodb_ms.tar.gz -O /tmp/mongodb_ms.tar.gz
 tar -zxvf /tmp/mongodb_ms.tar.gz -C /tmp
-echo &quot;tar done&quot; &amp;&amp; exit 0
+echo &quot;tar done&quot;
 clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename &quot;$0&quot;)                                #&#x5F53;&#x524D;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x540D;
@@ -706,7 +706,7 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-sed -i &quot;s#/usr/local/mongodb#$MONGODHOME/g&quot; /etc/keepalived/keepalived.conf
+sed -i &quot;s#/usr/local/mongodb#$MONGODHOME#g&quot; /etc/keepalived/keepalived.conf
 sed -i &apos;s/vip/${outputs.vip.privateIpAddress}/g&apos; /etc/keepalived/keepalived.conf
 
 #config mongodb manage script
@@ -747,9 +747,9 @@ if [ $MONGODHOME == &quot;/usr/local/mongodb&quot; ];then
     echo &quot;same ok&quot; &gt; /dev/null
 else
     echo &quot;The specified directory is inconsistent with the mongodb_manage&quot; &gt; /dev/null
-    sed -i &quot;6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#&quot; $MONGODB_MANAGE &gt; /dev/null    #&#x4FEE;&#x6539;mongodb&#x7BA1;&#x7406;&#x7A0B;&#x5E8F;&#x7684;MONGOHOME&#x76EE;&#x5F55;&#x4E3A;&#x6B63;&#x786E;&#x7684;
+    sed -i &quot;6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#&quot; $MONGODHOME/mongodb_manage_ms.sh &gt; /dev/null    #&#x4FEE;&#x6539;mongodb&#x7BA1;&#x7406;&#x7A0B;&#x5E8F;&#x7684;MONGOHOME&#x76EE;&#x5F55;&#x4E3A;&#x6B63;&#x786E;&#x7684;
 fi
-sed -i &apos;s/master_ip/${outputs.master.privateIp}/g&apos; $MONGODB_MANAGE
+sed -i &apos;s/master_ip/${outputs.master.privateIp}/g&apos; $MONGODHOME/mongodb_manage_ms.sh
 
 #start mongodb
 #&#x7B2C;&#x4E00;&#x6B21;&#x542F;&#x52A8;master&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x7528;&#xFF1A;/etc/init.d/mongod start_master
@@ -761,6 +761,7 @@ echo &quot;master&quot; &gt; $MONGODHOME/flag
 sleep 2s
 service keepalived start
 echo &quot;Suggest:no set keepalived boot with system&quot;
+exit 0
 </code></pre><p>18&#x3001;&#x70B9;&#x51FB;&#x201C;&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;slave_install&#x201D;&#xFF0C;&#x6839;&#x636E;&#x9700;&#x8981;&#x586B;&#x5199;&#x63A7;&#x4EF6;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF1A;<br>&#x6CE8;&#x610F;&#xFF1A;&#x7EA2;&#x8272;&#x65B9;&#x6846;&#x5185;&#x7684;&#x5185;&#x5BB9;&#x5FC5;&#x586B;&#xFF0C;&#x7F16;&#x53F7;&#x3001;&#x540D;&#x79F0;&#x90FD;&#x7528;&#x82F1;&#x6587;&#x8868;&#x793A;&#xFF0C;<strong>&#x5B9E;&#x4F8B;ID</strong>&#x4E2D;&#x7684;&#x586B;&#x5199;&#x683C;&#x5F0F;&#x662F;&#xFF1A;  </p>
 <blockquote>
 <p>&#x5B9E;&#x4F8B;ID&#xFF1A;${outputs.<font color="#7FFF00">slave</font>.instanceId}<br>&#x7EFF;&#x8272;&#x6807;&#x8BB0;&#x7684;&#x662F;<strong>&#x201C;&#x5B9E;&#x4F8B;slave&#x201D;&#x63A7;&#x4EF6;</strong>&#x4E2D;&#x7684;<strong>&#x201C;&#x5B9E;&#x4F8B;ID&#x201D;</strong>&#xFF0C;&#x5FC5;&#x987B;&#x4E00;&#x81F4;&#x3002;  </p>
@@ -771,7 +772,7 @@ echo &quot;Suggest:no set keepalived boot with system&quot;
 clear
 wget http://10.201.83.1:81/data/mongodb_ms.tar.gz -O /tmp/mongodb_ms.tar.gz
 tar -zxvf /tmp/mongodb_ms.tar.gz -C /tmp
-echo &quot;tar done&quot; &amp;&amp; exit 0
+echo &quot;tar done&quot;
 clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename &quot;$0&quot;)                                #&#x5F53;&#x524D;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x540D;
@@ -1099,7 +1100,7 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-sed -i &quot;s#/usr/local/mongodb#$MONGODHOME/g&quot; /etc/keepalived/keepalived.conf
+sed -i &quot;s#/usr/local/mongodb#$MONGODHOME#g&quot; /etc/keepalived/keepalived.conf
 sed -i &apos;s/vip/${outputs.vip.privateIpAddress}/g&apos; /etc/keepalived/keepalived.conf
 
 #config mongodb manage script
@@ -1140,9 +1141,9 @@ if [ $MONGODHOME == &quot;/usr/local/mongodb&quot; ];then
     echo &quot;same ok&quot; &gt; /dev/null
 else
     echo &quot;The specified directory is inconsistent with the mongodb_manage&quot; &gt; /dev/null
-    sed -i &quot;6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#&quot; $MONGODB_MANAGE &gt; /dev/null    #&#x4FEE;&#x6539;mongodb&#x7BA1;&#x7406;&#x7A0B;&#x5E8F;&#x7684;MONGOHOME&#x76EE;&#x5F55;&#x4E3A;&#x6B63;&#x786E;&#x7684;
+    sed -i &quot;6s#MONGOHOME.*#MONGOHOME=$MONGODHOME#&quot; $MONGODHOME/mongodb_manage_ms.sh &gt; /dev/null    #&#x4FEE;&#x6539;mongodb&#x7BA1;&#x7406;&#x7A0B;&#x5E8F;&#x7684;MONGOHOME&#x76EE;&#x5F55;&#x4E3A;&#x6B63;&#x786E;&#x7684;
 fi
-sed -i &apos;s/master_ip/${outputs.master.privateIp}/g&apos; $MONGODB_MANAGE
+sed -i &apos;s/master_ip/${outputs.master.privateIp}/g&apos; $MONGODHOME/mongodb_manage_ms.sh
 
 #start mongodb
 #&#x7B2C;&#x4E00;&#x6B21;&#x542F;&#x52A8;slave&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x7528;&#xFF1A;/etc/init.d/mongod start_slave
@@ -1154,6 +1155,7 @@ echo &quot;slave&quot; &gt; $MONGODHOME/flag
 sleep 2s
 service keepalived start
 echo &quot;Suggest:no set keepalived boot with system&quot;
+exit 0
 </code></pre><p>20&#x3001;&#x70B9;&#x51FB;&#x201C;&#x7ED3;&#x675F;&#x4E8B;&#x4EF6;&#x201D;&#xFF0C;&#x6839;&#x636E;&#x9700;&#x8981;&#x586B;&#x5199;&#x63A7;&#x4EF6;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF1A;  </p>
 <p>&#x6CE8;&#x610F;&#xFF1A;&#x7EA2;&#x8272;&#x65B9;&#x6846;&#x5185;&#x7684;&#x5185;&#x5BB9;&#x5FC5;&#x586B;&#xFF0C;&#x540D;&#x79F0;&#x5EFA;&#x8BAE;&#x7528;&#x82F1;&#x6587;&#x8868;&#x793A;&#x3002;  </p>
 <p><img src="../asset/mongodb_ms/5bf7e962ac11771cbb350b030089a054.png" alt=""></p>
@@ -1381,7 +1383,7 @@ echo &quot;Suggest:no set keepalived boot with system&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MongoDB主从","level":"1.4.5","depth":2,"next":{"title":"MongoDB集群","level":"1.4.6","depth":2,"path":"demo/mongodb_cluster.md","ref":"demo/mongodb_cluster.md","articles":[]},"previous":{"title":"MongoDB单机","level":"1.4.4","depth":2,"path":"demo/mongodb_single.md","ref":"demo/mongodb_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mongodb_master-slave.md","mtime":"2018-12-06T04:34:15.425Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-06T04:35:06.050Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MongoDB主从","level":"1.4.5","depth":2,"next":{"title":"MongoDB集群","level":"1.4.6","depth":2,"path":"demo/mongodb_cluster.md","ref":"demo/mongodb_cluster.md","articles":[]},"previous":{"title":"MongoDB单机","level":"1.4.4","depth":2,"path":"demo/mongodb_single.md","ref":"demo/mongodb_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mongodb_master-slave.md","mtime":"2018-12-06T04:55:39.338Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-06T04:58:56.414Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
