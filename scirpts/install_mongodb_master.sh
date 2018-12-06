@@ -262,12 +262,12 @@ if [ $? -ne 0 ];then
     nmap localhost -p $PORT | grep "$PORT/tcp open"
     if [ $? -ne 0 ];then
     /etc/init.d/mongod stop > /dev/null
-    service keepalived stop
     grep -w "master" /usr/local/mongodb/flag > /dev/null    #判断当前角色，若为master，则执行下面的sshpass，若为slave，则不执行sshpass：
     if [ $? -eq 0 ];then
         sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no root@$HOST "/etc/init.d/mongod stop;echo "master" > /usr/local/mongodb/flag;/etc/init.d/mongod start_master"    #因为上述判断本机是master则远程是slave，此时需要远程的slave成为master
         fi
     fi
+    service keepalived stop
 fi
 EOF
 sed -i 's/slave_ip/${outputs.slave.privateIp}/g' $MONGODHOME/checkMongoDBport.sh    #获取slave的ip和密码并填入checkMongoDBport.sh中
