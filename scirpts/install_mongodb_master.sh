@@ -1,5 +1,9 @@
 #!/bin/bash
 clear
+wget http://10.201.83.1:81/data/mongodb_ms.tar.gz -O /tmp/mongodb_ms.tar.gz
+tar -zxvf /tmp/mongodb_ms.tar.gz -C /tmp
+echo "tar done" && exit 0
+clear
 # Some functions to make the below more readable
 SCRIPTNAME=$(basename "$0")                                #当前脚本文件名
 SCRIPTPATH=$(cd $(dirname "$0");pwd)                       #当前脚本所在绝对目录
