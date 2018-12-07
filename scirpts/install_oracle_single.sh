@@ -75,22 +75,27 @@ if [ $USER = "${ORACLEUSER}" ] ||[ $USER = "${GRIDUSER}" ]; then
 fi
 EOF
 
-echo "配置asm磁盘权限"
+echo "使用udev配置asm磁盘路径和权限"
 volumestr="${outputs.multi.asm.volumeCode}"
 volumestr=${volumestr#[}
 volumestr=${volumestr%]}
 volumearr=(${volumestr//,/ })
 
 for volume in ${volumearr[@]}; do
+  #获取磁盘volume对应的序列号，后8位位序列号
+  serial=${volume:4}
+  #kvm平台序列号为大写，vmware平台序列号为小写，所以两个都写，不会同时起作用
+  lserial=$(echo $serial | tr '[A-Z]' '[a-z]')
   cat <<EOF >>/etc/udev/rules.d/99-oracle-asmdevices.rules
-    SUBSYSTEM=="block",ATTR{serial}=="$volume",NAME="asm-${volume}", OWNER="grid",GROUP="asmadmin", MODE="0660"
+    SUBSYSTEM=="block",ENV{ID_SERIAL}=="?*${serial}",NAME="asm-${volume}", OWNER="grid",GROUP="asmadmin", MODE="0660"
+    SUBSYSTEM=="block",ENV{ID_SERIAL}=="?*${lserial}",NAME="asm-${volume}", OWNER="grid",GROUP="asmadmin", MODE="0660"
 EOF
 done
 
 devices=$(printf ",/dev/asm-%s" "${volumearr[@]}")
 devices=${devices:1}
 export devices 
-
+# 重新加载udev规则，触发生成asm磁盘盘符
 udevadm control --reload-rules && udevadm trigger
 
 
@@ -117,6 +122,14 @@ if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
   wget -q ${INSTALLER_S3_BUCKET}/linuxamd64_12102_database_2of2.zip  -O ${ORACLEPATH}/install/linuxamd64_12102_database_2of2.zip 
   wget -q ${INSTALLER_S3_BUCKET}/linuxamd64_12102_grid_1of2.zip  -O ${ORACLEPATH}/install/linuxamd64_12102_grid_1of2.zip 
   wget -q ${INSTALLER_S3_BUCKET}/linuxamd64_12102_grid_2of2.zip  -O ${ORACLEPATH}/install/linuxamd64_12102_grid_2of2.zip
+  if  [[ ! -f ${ORACLEPATH}/install/linuxamd64_12102_database_1of2.zip ]] || [[ ! -f ${ORACLEPATH}/install/linuxamd64_12102_database_2of2.zip ]] ; then 
+    echo "无法下载database安装文件"
+    exit 1
+  fi
+  if  [[ ! -f ${ORACLEPATH}/install/linuxamd64_12102_grid_1of2.zip ]] || [[ ! -f ${ORACLEPATH}/install/linuxamd64_12102_grid_2of2.zip ]] ; then 
+    echo "无法下载grid安装文件"
+    exit 1
+  fi
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
   wget -q ${INSTALLER_S3_BUCKET}/linuxx64_12201_database.zip -O ${ORACLEPATH}/install/linuxx64_12201_database.zip
@@ -124,6 +137,10 @@ if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
   wget -q ${INSTALLER_S3_BUCKET}/p6880880_122010_Linux-x86-64.zip -O ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip
   wget -q ${INSTALLER_S3_BUCKET}/p27468969_122010_Linux-x86-64.zip -O ${ORACLEPATH}/install/p27468969_122010_Linux-x86-64.zip
   wget -q ${INSTALLER_S3_BUCKET}/p27475613_122010_Linux-x86-64.zip -O ${ORACLEPATH}/install/p27475613_122010_Linux-x86-64.zip
+  if  [[ ! -f ${ORACLEPATH}/install/linuxx64_12201_database.zip ]] || [[ ! -f ${ORACLEPATH}/install/linuxx64_12201_grid_home.zip ]] ; then 
+    echo "无法下载安装文件"
+    exit 1
+  fi
 fi
 
 echo "下载oracle补丁文件"
@@ -280,16 +297,17 @@ fi
 
 echo "安装oracle"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 echo "root执行安装"
 ${ORACLEPATH}/oracle/oracle/product/12c/db_1/root.sh
 
-echo "更新补丁"
+
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/p6880880_122010_Linux-x86-64.zip ]]; then
+  echo "更新补丁"
   su -c 'unzip ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
   su -c 'unzip ${ORACLEPATH}/install/p27468969_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
   su -c 'unzip ${ORACLEPATH}/install/p27475613_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
@@ -298,7 +316,7 @@ if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/p6880880_12201
 fi
 
 
-echo "创建数据库"
+echo "使用dbca创建数据库，默认没有创建containerdb"
 su -c 'dbca -silent \
 -createDatabase \
 -templateName General_Purpose.dbc \
