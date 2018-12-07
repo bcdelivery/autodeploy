@@ -63,20 +63,21 @@ cat ${MONGODHOME}/repl.config | ${MONGODHOME}/bin/mongo
 > 补充：这里我们选择在实例node01上执行初始化。如果其他实例也都需要执行该指令的内容，则需将该指令控件放入子流程中；若需要在第二台实例上执行该指令，可再添加一个控件，实例ID填写：\${outputs.node02.instanceId}，注意，使用了子流程，则内部的实例序号是从01、02、03开始的，而不是1、2、3这样的。  
 
 ### 四、脚本信息
-脚本名称： ` install_mongodb_replset.sh `
-脚本描述： 安装、启动MongoDB、启动keepalived。
-操作系统： rhel/centos7 32/64
-脚本变量：
-|变量名称|显示名称|变量类型|允许用户更改|变量内容|备注|
+脚本名称： ` install_mongodb_replset.sh `  
+脚本描述： 安装、启动MongoDB、启动keepalived。  
+操作系统： rhel/centos7 32/64  
+脚本变量：  
+
+ |变量名称|显示名称|变量类型|允许用户更改|变量内容|
  |------|-------|-------|------|----|----|
- |MONGODHOME|程序家目录|String|true|/usr/local/mongodb||
- |MONGODBPATH|数据库目录|String|true|ext4|/data/db||
- |MONGODLOGDIR|日志目录|String|true|/var/log/mongo||
- |MONGODB_PROGRAM|安装程序|String|true|/tmp/mongodb/mongodb-linux-x86_64-4.0.4.tgz||
- |MONGODB_TAR_DIR|临时目录|String|true|/tmp/mongo||
- |KEEPALIVED|keepalived|String|true|/tmp/mongodb/keepalived-1.2.13-6.el7.x86_64.rpm||
- |vipType|虚拟IP类型|String|true|KeepAlive||
- |NODE_NUM|集群规模(台)|Number|true|3||
+ |MONGODHOME|程序家目录|String|true|/usr/local/mongodb|
+ |MONGODBPATH|数据库目录|String|true|/data/db|
+ |MONGODLOGDIR|日志目录|String|true|/var/log/mongo|
+ |MONGODB_PROGRAM|安装程序|String|true|/tmp/mongodb/mongodb-linux-x86_64-4.0.4.tgz|
+ |MONGODB_TAR_DIR|临时目录|String|true|/tmp/mongo|
+ |KEEPALIVED|keepalived|String|true|/tmp/mongodb/keepalived-1.2.13-6.el7.x86_64.rpm|
+ |vipType|虚拟IP类型|String|true|KeepAlive|
+ |NODE_NUM|集群规模(台)|Number|true|3|
 
 ### 五、参数模板
 
