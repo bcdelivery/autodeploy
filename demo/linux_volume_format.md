@@ -14,4 +14,4 @@
 # 脚本内容
 `VOLUMEID`默认会作为磁盘的序列号，所以在linux中查询磁盘的序列号可以唯一确定VOLUMEID对应的磁盘，并进行格式化。
 
-[import lang="shell"](../scirpts/linux_format_volume.sh)
+[import lang="sh"](../scirpts/linux_format_volume.sh)

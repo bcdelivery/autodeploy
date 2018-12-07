@@ -1,22 +1,32 @@
 [
-    {
-      "Key": "InstanceId",
-      "DisplayName": "root实例ID",
-      "Value": "${outputs.oracle.instanceCode}(${outputs.oracle.privateIp})"
-    },
-    {
-      "Key": "oraclepath",
-      "DisplayName": "oracle安装路径",
-      "Value": "${parameters.ORACLEPATH}"
-    },
-    {
-      "Key": "oraclesid",
-      "DisplayName": "sid",
-      "Value": "${parameters.ORACLESID}"
-    },
-    {
-      "Key": "oraclepass",
-      "DisplayName": "dba密码",
-      "Value": "${parameters.ORACLEPASSWD}"
-    }
-  ]
+  {
+    "Key": "oraclesid",
+    "DisplayName": "sid",
+    "Value": "${parameters.ORACLESID}"
+  },
+  {
+    "Key": "oraclebase",
+    "DisplayName": "ORACLEBASE",
+    "Value": "${parameters.ORACLEPATH}/oracle/oracle"
+  },
+  {
+    "Key": "oraclehome",
+    "DisplayName": "ORACLEHOME",
+    "Value": "${parameters.ORACLEPATH}/oracle/oracle/product/12c/db_1/"
+  },
+  {
+    "Key": "gridbase",
+    "DisplayName": "GRIDBASE",
+    "Value": "${parameters.ORACLEPATH}/oracle/grid"
+  },
+  {
+    "Key": "gridhome",
+    "DisplayName": "GRIDHOME",
+    "Value": "${parameters.ORACLEPATH}/oracle/grid/product/12c/grid/"
+  },
+  {
+    "Key": "characterset",
+    "DisplayName": "字符集",
+    "Value": "${parameters.ORACLE_CHARACTER}"
+  }
+]
