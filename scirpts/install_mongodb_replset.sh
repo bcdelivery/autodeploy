@@ -46,19 +46,6 @@ if [ ! -f "$MONGODB_PROGRAM" ];then
     exit 1
 fi
 
-#mongodb管理程序是否存在（分系统）
-dec_sys_ver
-if [ "$Release" == "rhel7" ];then
-    if [ ! -f "$MONGODB_MANAGE" ];then
-        echo "mongodb安装程序（$MONGODB_MANAGE）不存在，且必须和脚本在同一目录下！"
-        exit 1
-    fi
-else
-    echo "不支持的操作系统，需要使用centos7或者rhel7版本"
-    exit 1
-    fi
-fi
-
 #优化系统
 #/etc/security/limits.conf
 grep -w "* - nofile 65536" /etc/security/limits.conf > /dev/null   #判断/etc/security/limits.conf是否已经含有nofile的配置
@@ -340,7 +327,6 @@ vrrp_script chk_mongo_primary {
 
 vrrp_instance VI_1 {
     state BACKUP
-	nopreempt
     interface eth0
     virtual_router_id 66
     priority 100
