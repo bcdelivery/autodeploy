@@ -1,0 +1,1009 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Apache zookeeper · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="mongodb_shard.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../rules.html">
+            
+                <a href="../rules.html">
+            
+                    
+                    规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../conceptions.html">
+            
+                <a href="../conceptions.html">
+            
+                    
+                    概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    自动化部署样例
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="simple_demo.html">
+            
+                <a href="simple_demo.html">
+            
+                    
+                    简单的流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="oracle_single.html">
+            
+                <a href="oracle_single.html">
+            
+                    
+                    Oracle 单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="oracle_adg.html">
+            
+                <a href="oracle_adg.html">
+            
+                    
+                    Oracle Active Dataguard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="mongodb_single.html">
+            
+                <a href="mongodb_single.html">
+            
+                    
+                    MongoDB单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="mongodb_master-slave.html">
+            
+                <a href="mongodb_master-slave.html">
+            
+                    
+                    MongoDB主从
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="mongodb_repl.html">
+            
+                <a href="mongodb_repl.html">
+            
+                    
+                    MongoDB集群-副本集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="mongodb_shard.html">
+            
+                <a href="mongodb_shard.html">
+            
+                    
+                    MongoDB集群-分片集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.8" data-path="apache_zookeeper.html">
+            
+                <a href="apache_zookeeper.html">
+            
+                    
+                    Apache zookeeper
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    脚本管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="linux_volume_format.html">
+            
+                <a href="linux_volume_format.html">
+            
+                    
+                    Linux格式化磁盘
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Apache zookeeper</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x76EE;&#x6807;">&#x76EE;&#x6807;</h1>
+<p>ZooKeeper&#x662F;&#x4E00;&#x4E2A;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#xFF0C;&#x5F00;&#x653E;&#x6E90;&#x7801;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x534F;&#x8C03;&#x670D;&#x52A1;&#xFF0C;&#x662F;Google&#x7684;Chubby&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x662F;Hadoop&#x548C;Hbase&#x7684;&#x91CD;&#x8981;&#x7EC4;&#x4EF6;&#x3002;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x4E3A;&#x5206;&#x5E03;&#x5F0F;&#x5E94;&#x7528;&#x63D0;&#x4F9B;&#x4E00;&#x81F4;&#x6027;&#x670D;&#x52A1;&#x7684;&#x8F6F;&#x4EF6;&#xFF0C;&#x63D0;&#x4F9B;&#x7684;&#x529F;&#x80FD;&#x5305;&#x62EC;&#xFF1A;&#x914D;&#x7F6E;&#x7EF4;&#x62A4;&#x3001;&#x57DF;&#x540D;&#x670D;&#x52A1;&#x3001;&#x5206;&#x5E03;&#x5F0F;&#x540C;&#x6B65;&#x3001;&#x7EC4;&#x670D;&#x52A1;&#x7B49;&#x3002;ZooKeeper&#x7684;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x5C01;&#x88C5;&#x597D;&#x590D;&#x6742;&#x6613;&#x51FA;&#x9519;&#x7684;&#x5173;&#x952E;&#x670D;&#x52A1;&#xFF0C;&#x5C06;&#x7B80;&#x5355;&#x6613;&#x7528;&#x7684;&#x63A5;&#x53E3;&#x548C;&#x6027;&#x80FD;&#x9AD8;&#x6548;&#x3001;&#x529F;&#x80FD;&#x7A33;&#x5B9A;&#x7684;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7ED9;&#x7528;&#x6237;&#x3002;Zookeeper&#x5E94;&#x7528;&#x975E;&#x5E38;&#x5E7F;&#x6CDB;&#xFF0C;&#x672C;&#x6587;&#x4ECB;&#x7ECD;Zookeeper&#x81EA;&#x52A8;&#x5316;&#x5B89;&#x88C5;&#x90E8;&#x7F72;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>&#x5047;&#x8BBE;&#x8BFB;&#x8005;&#x6307;&#x5BFC;<code>sip</code>&#x4E2D;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#xFF0C;&#x672C;&#x6587;&#x53EA;&#x63CF;&#x8FF0;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#x8BF7;&#x53C2;&#x8003;<code>sip</code>&#x4F7F;&#x7528;&#x624B;&#x518C;&#x3002;</p>
+<h1 id="&#x6A21;&#x578B;">&#x6A21;&#x578B;</h1>
+<p><img src="../asset/apache_zookeeper_model.jpg" alt="zookeeper&#x7248;&#x6A21;&#x578B;">
+&#x672C;&#x6A21;&#x578B;&#x5206;&#x4E3A;3&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x5176;&#x4E2D;&#x6709;2&#x4E2A;&#x5B50;&#x6D41;&#x7A0B;&#xFF1A;</p>
+<ul>
+<li>&#x521B;&#x5EFA;zookeeper&#x5B89;&#x5168;&#x7EC4;:&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A; <code>&#x5B89;&#x5168;&#x7EC4;</code>&#xFF0C;&#x7F16;&#x53F7;&#x4E3A;<code>zookeeper_sg</code>,&#x5F00;&#x653E;&#x7AEF;&#x53E3;&#x4E3A;<code>tcp:22,2888,3888,${ZKPORT}</code></li>
+<li>&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;&#x5B50;&#x6D41;&#x7A0B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B50;&#x6D41;&#x7A0B;</code>, &#x591A;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;&#x4E3A;<code>Parallel</code>, &#x57FA;&#x6570;&#x4E3A;<code>${NUMOFZK}</code><ul>
+<li>&#x521B;&#x5EFA;&#x5B9E;&#x4F8B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B9E;&#x4F8B;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>zookeeper</code></li>
+<li>&#x7533;&#x8BF7;zookeeper&#x5F39;&#x6027;IP&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5F39;&#x6027;IP</code>, &#x7F16;&#x53F7;&#x4E3A;<code>zookeeper_eip</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code></li>
+<li>&#x5B89;&#x88C5;JRE&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x901A;&#x7528;&#x6307;&#x4EE4;</code>,&#x7F16;&#x53F7;&#x4E3A;<code>install_jre</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code>&#xFF0C;&#x811A;&#x672C;&#x6587;&#x4EF6;<code>LINUX_JRE_8U181_64</code></li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;&#xFF1A;&#x57FA;&#x6570;(&#x591A;&#x5B9E;&#x4F8B;)<code>${NUMOFZK}</code>,&#x591A;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;<code>Parallel</code></li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;1&#xFF1A;&#x7533;&#x8BF7;zookeeper&#x6570;&#x636E;volume&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B58;&#x50A8;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>zk_data_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code>&#xFF0C;&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;&#x4E3A;<code>${outputs.zookeeper.instanceCode}</code></li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;1&#xFF1A;&#x683C;&#x5F0F;&#x5316;zookeeper&#x6570;&#x636E;volume&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x901A;&#x7528;&#x6307;&#x4EE4;</code>,&#x7F16;&#x53F7;&#x4E3A;<code>format_zk_data_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code>&#xFF0C;&#x811A;&#x672C;&#x6587;&#x4EF6;<code>linux_format_volume_new</code></li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;2&#xFF1A;&#x7533;&#x8BF7;zookeeper&#x65E5;&#x5FD7;volume&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B58;&#x50A8;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>zk_log_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code>&#xFF0C;&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;&#x4E3A;<code>${outputs.zookeeper.instanceCode}</code></li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;2&#xFF1A;&#x683C;&#x5F0F;&#x5316;zookeeper&#x65E5;&#x5FD7;volume&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x901A;&#x7528;&#x6307;&#x4EE4;</code>,&#x7F16;&#x53F7;&#x4E3A;<code>format_zk_log_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code>&#xFF0C;&#x811A;&#x672C;&#x6587;&#x4EF6;<code>linux_format_volume_new</code></li>
+</ul>
+</li>
+<li>&#x5B89;&#x88C5;zookeeper&#x5B50;&#x6D41;&#x7A0B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B50;&#x6D41;&#x7A0B;</code>, &#x591A;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;&#x4E3A;<code>Parallel</code>, &#x57FA;&#x6570;&#x4E3A;<code>${NUMOFZK}</code><ul>
+<li>&#x5B89;&#x88C5;zookeeper&#x7EC4;&#x4EF6;: &#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x7EC4;&#x4EF6;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>zookeeper_com</code>&#xFF0C;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x4E3A;<code>${ZKDATAPATH}</code>,&#x65E5;&#x5FD7;&#x76EE;&#x5F55;&#x4E3A;<code>${ZKLOGPATH}</code>,&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.zookeeper.instanceId}</code>,&#x5B89;&#x88C5;&#x811A;&#x672C;&#x4E3A;&#x4E0B;&#x9762;&#x7684;&#x811A;&#x672C;.</li>
+</ul>
+</li>
+</ul>
+<h1 id="&#x6587;&#x4EF6;&#x51C6;&#x5907;">&#x6587;&#x4EF6;&#x51C6;&#x5907;</h1>
+<p>&#x9700;&#x8981;&#x5728;S3&#x7684;<code>bingoinstall</code>&#x6876;&#x4E2D;&#x5C06;&#x4E0B;&#x5217;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#xFF0C;&#x5E76;&#x4E14;&#x5F00;&#x901A;&#x4E0B;&#x8F7D;&#x80FD;&#x529B;&#x3002;</p>
+<ul>
+<li>3.4.12&#xFF1A;<code>zookeeper-3.4.12.tar.gz</code>(&#x5B89;&#x88C5;&#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;)</li>
+</ul>
+<p>&#x4EE5;&#x4E0A;&#x6587;&#x4EF6;&#x53EF;&#x4EE5;&#x5728;<a href="https://zookeeper.apache.org/releases.html" target="_blank">https://zookeeper.apache.org</a>&#x4E0B;&#x8F7D;&#xFF0C;&#x8BF7;&#x4FDD;&#x6301;&#x539F;&#x6837;&#x4E0A;&#x4F20;&#x3002;</p>
+<h1 id="&#x8F93;&#x5165;&#x53C2;&#x6570;">&#x8F93;&#x5165;&#x53C2;&#x6570;</h1>
+<ul>
+<li>ZKDATAPATH: &#x6570;&#x636E;&#x8DEF;&#x5F84;</li>
+<li>ZKLOGPATH: &#x65E5;&#x5FD7;&#x8DEF;&#x5F84;</li>
+<li>ZKENABLEADMIN: &#x662F;&#x5426;&#x542F;&#x7528;&#x7BA1;&#x7406;&#x5458;</li>
+<li>ZKADMIN:  &#x7BA1;&#x7406;&#x5458;&#x7528;&#x6237;&#x540D;</li>
+<li>ZKPORT: port</li>
+<li>ZKPASS: &#x7BA1;&#x7406;&#x5458;&#x5BC6;&#x7801;</li>
+<li>NUMOFZK: &#x670D;&#x52A1;&#x5668;&#x6570;&#x91CF;</li>
+<li>ZKVERSION: &#x7248;&#x672C;</li>
+<li>S3_INSTALL_BUCKET&#xFF1A;s3&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF0C;&#x4F8B;&#x5982;<a href="http://169.254.169.254:8683/bingoinstall/" target="_blank">http://169.254.169.254:8683/bingoinstall/</a></li>
+</ul>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;projectId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::Project::Id&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;11111&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x9879;&#x76EE;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;userMode&quot;</span>: <span class="hljs-string">&quot;buy&quot;</span>,
+      <span class="hljs-string">&quot;showRegion&quot;</span>: <span class="hljs-literal">true</span>
+    }
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;regionId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::Cloud::Region&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;bcc&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x533A;&#x57DF;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {}
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;vpcId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::Vpc::Id&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7F51;&#x7EDC;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>,
+      <span class="hljs-string">&quot;vdcId&quot;</span>: <span class="hljs-string">&quot;Ref:projectId&quot;</span>
+    }
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;elasticIpSelect&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::ElasticIp::Id&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5F39;&#x6027;IP&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>,
+      <span class="hljs-string">&quot;vpcCode&quot;</span>: <span class="hljs-string">&quot;Ref:vpcId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;bandwidth&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Number&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;100&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5F39;&#x6027;IP&#x5E26;&#x5BBD;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;storageId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::CloudStorage&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B58;&#x50A8;&#x7C7B;&#x578B;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;instanceType&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::InstanceType&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;m2.large&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    }
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;imageId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::CloudImage&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;ami-6B67809C&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x955C;&#x50CF;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;securityGroupName&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::SecurityGroup::Id&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;default&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B89;&#x5168;&#x7EC4;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>,
+      <span class="hljs-string">&quot;sortField&quot;</span>: <span class="hljs-string">&quot;Create_Time&quot;</span>
+    }
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;expireTime&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::ExpireTime&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;-1&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6709;&#x6548;&#x671F;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;dictId&quot;</span>: <span class="hljs-string">&quot;9ccbe743-d09e-4509-a881-982e0b477c6f&quot;</span>
+    }
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;keypairName&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::KeyPair::KeyName&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5BC6;&#x94A5;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;disableApiTermination&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::TerminateSet&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x9500;&#x6BC1;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;dictId&quot;</span>: <span class="hljs-string">&quot;39308868-ff7d-453d-9052-7b80f32d225b&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;ConstraintDescription&quot;</span>: <span class="hljs-string">&quot;&#x9632;&#x6B62;&#x6279;&#x91CF;&#x65F6;&#x8BEF;&#x5220;&#x9664;&#xFF0C;&#x5982;&#x9700;&#x5220;&#x9664;&#x9700;&#x8981;&#x5148;&#x53D6;&#x6D88;&#x9500;&#x6BC1;&#x4FDD;&#x62A4;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;buyNum&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6570;&#x91CF;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;systemDataBuyNum&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Number&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;100&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7CFB;&#x7EDF;&#x76D8;&#x5927;&#x5C0F;&#xFF08;G&#xFF09;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;NUMOFZK&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Number&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;3&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x96C6;&#x7FA4;&#x89C4;&#x6A21;(&#x53F0;)&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedValues&quot;</span>: [
+      <span class="hljs-string">&quot;1&quot;</span>,
+      <span class="hljs-string">&quot;3&quot;</span>,
+      <span class="hljs-string">&quot;5&quot;</span>,
+      <span class="hljs-string">&quot;7&quot;</span>
+    ],
+    <span class="hljs-string">&quot;Description&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x5668;&#x6570;&#x91CF;&#xFF0C;&#x591A;&#x53F0;&#x5219;&#x4E3A;&#x96C6;&#x7FA4;&#x67B6;&#x6784;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIType&quot;</span>: <span class="hljs-string">&quot;selectbutton&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;ZKDATAPATH&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;/app/zookeeper/data&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x76EE;&#x5F55;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;Description&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x76D8;&#x76EE;&#x5F55;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;S3_INSTALL_BUCKET&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;http://169.254.169.254:8683/bingoinstall&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B89;&#x88C5;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;Description&quot;</span>: <span class="hljs-string">&quot;&#x5B89;&#x88C5;&#x6587;&#x4EF6;&#x6240;&#x5728;&#x7684;URL&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;volumeBuyNum&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Number&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;100&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x76D8;&#x5927;&#x5C0F;&#xFF08;G&#xFF09;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;ZKVERSION&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;3.4.12&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7248;&#x672C;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;Description&quot;</span>: <span class="hljs-string">&quot;zookeeper&#x7248;&#x672C;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;UIType&quot;</span>: <span class="hljs-string">&quot;selectbutton&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;ZKLOGPATH&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;/app/zookeeper/log&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x65E5;&#x5FD7;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;Description&quot;</span>: <span class="hljs-string">&quot;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;FSTYPE&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;ext4&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7C7B;&#x578B;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;ZKPORT&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;2181&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7AEF;&#x53E3;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x914D;&#x7F6E;&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MOUNTPOINT&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${ZKDATAPATH}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6302;&#x8F7D;&#x70B9;&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;format_zk_data_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;VOLUMEID&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${outputs.zk_data_volume.volumeCode}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;volumeid&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;format_zk_data_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MOUNTPOINT&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${ZKLOGPATH}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6302;&#x8F7D;&#x70B9;&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;format_zk_log_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;VOLUMEID&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${outputs.zk_log_volume.volumeCode}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;volumeid&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;format_zk_log_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>
+  }
+]
+</code></pre>
+<h1 id="&#x8F93;&#x51FA;&#x53C2;&#x6570;">&#x8F93;&#x51FA;&#x53C2;&#x6570;</h1>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;version&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7248;&#x672C;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.ZKVERSION}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;numofzk&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x670D;&#x52A1;&#x5668;&#x6570;&#x91CF;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.NUMOFZK}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;port&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7AEF;&#x53E3;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.ZKPORT}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;zkdatapath&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.ZKDATAPATH}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;zklogpath&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x65E5;&#x5FD7;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.ZKLOGPATH}&quot;</span>
+  }  
+]
+</code></pre>
+<h1 id="&#x670D;&#x52A1;&#x4F7F;&#x7528;">&#x670D;&#x52A1;&#x4F7F;&#x7528;</h1>
+<p>TODO: &#x589E;&#x52A0;&#x63CF;&#x8FF0;&#x4F7F;&#x7528;</p>
+<h1 id="&#x811A;&#x672C;&#x5185;&#x5BB9;">&#x811A;&#x672C;&#x5185;&#x5BB9;</h1>
+<pre><code class="lang-sh"><span class="hljs-meta">#! /bin/sh</span>
+<span class="hljs-comment">#######################</span>
+<span class="hljs-comment"># ZKDATAPATH: &#x6570;&#x636E;&#x8DEF;&#x5F84;</span>
+<span class="hljs-comment"># ZKLOGPATH: &#x65E5;&#x5FD7;&#x8DEF;&#x5F84;</span>
+<span class="hljs-comment"># ZKENABLEADMIN: &#x662F;&#x5426;&#x542F;&#x7528;&#x7BA1;&#x7406;&#x5458;</span>
+<span class="hljs-comment"># ZKADMIN:  &#x7BA1;&#x7406;&#x5458;&#x7528;&#x6237;&#x540D;</span>
+<span class="hljs-comment"># ZKPORT: port</span>
+<span class="hljs-comment"># ZKPASS: &#x7BA1;&#x7406;&#x5458;&#x5BC6;&#x7801;</span>
+<span class="hljs-comment"># NUMOFZK: &#x670D;&#x52A1;&#x5668;&#x6570;&#x91CF;</span>
+<span class="hljs-comment"># ZKVERSION: &#x7248;&#x672C;</span>
+<span class="hljs-comment"># S3_INSTALL_BUCKET&#xFF1A;s3&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF0C;&#x4F8B;&#x5982;http://169.254.169.254:8683/bingoinstall/</span>
+<span class="hljs-comment">#######################</span>
+<span class="hljs-keyword">if</span> [[ <span class="hljs-_">-f</span> /etc/redhat-release ]]; <span class="hljs-keyword">then</span>
+  ver0=<span class="hljs-string">&quot;<span class="hljs-variable">$(cat /etc/redhat-release |awk -Frelease &apos;{print $2}&apos; |awk &apos;{print $1}&apos;)</span>&quot;</span>
+  ver=<span class="hljs-string">&quot;<span class="hljs-variable">$(echo ${ver0%%.*})</span>&quot;</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$ver</span>&quot;</span> = <span class="hljs-string">&quot;7&quot;</span> ]; <span class="hljs-keyword">then</span>
+    Release=<span class="hljs-string">&quot;rhel7&quot;</span>
+  <span class="hljs-keyword">elif</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$ver</span>&quot;</span> = <span class="hljs-string">&quot;6&quot;</span> ]; <span class="hljs-keyword">then</span>
+    Release=<span class="hljs-string">&quot;rhel6&quot;</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;centos&#x6216;&#x8005;rhel6&#x3001;7&#x7248;&#x672C;&quot;</span>
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;centos&#x6216;&#x8005;rhel6&#x3001;7&#x7248;&#x672C;&quot;</span>
+    <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x673A;&#x5668;&#x7684;&#x79C1;&#x6709;IP&quot;</span>
+<span class="hljs-comment"># &#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x7C7B;&#x4F3C;[192.168.1.10,192.168.1.11,192.168.1.12]</span>
+privateIpStr=<span class="hljs-string">&quot;<span class="hljs-variable">${outputs.multi.zookeeper.privateIp}</span>&quot;</span>
+<span class="hljs-comment"># &#x53BB;&#x6389;&#x524D;&#x9762;&#x7684;&apos;[&apos;</span>
+privateIpStr=<span class="hljs-variable">${privateIpStr#[}</span>
+<span class="hljs-comment"># &#x53BB;&#x6389;&#x540E;&#x9762;&#x7684;&apos;]&apos;</span>
+privateIpStr=<span class="hljs-variable">${privateIpStr%]}</span>
+<span class="hljs-comment"># &#x5C06;&apos;,&apos;&#x66FF;&#x6362;&#x6210;&#x7A7A;&#x683C;</span>
+privateIpArr=(<span class="hljs-variable">${privateIpStr//,/ }</span>)
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x673A;&#x5668;&#x7684;&#x673A;&#x5668;ID&quot;</span>
+<span class="hljs-comment"># &#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x7C7B;&#x4F3C;[i-abcdefg1,i-abcdefg2,i-abcdefg3]</span>
+instanceIdStr=<span class="hljs-string">&quot;<span class="hljs-variable">${outputs.multi.zookeeper.instanceCode}</span>&quot;</span>
+<span class="hljs-comment"># &#x53BB;&#x6389;&#x524D;&#x9762;&#x7684;&apos;[&apos;</span>
+instanceIdStr=<span class="hljs-variable">${instanceIdStr#[}</span>
+<span class="hljs-comment"># &#x53BB;&#x6389;&#x540E;&#x9762;&#x7684;&apos;]&apos;</span>
+instanceIdStr=<span class="hljs-variable">${instanceIdStr%]}</span>
+<span class="hljs-comment"># &#x5C06;&apos;,&apos;&#x66FF;&#x6362;&#x6210;&#x7A7A;&#x683C;</span>
+instanceIdArr=(<span class="hljs-variable">${instanceIdStr//,/ }</span>)
+
+<span class="hljs-comment"># check NUMOFZK &gt;= 1</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">${NUMOFZK}</span> <span class="hljs-_">-lt</span> 1 ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;zookeeper&#x7684;&#x6570;&#x91CF;&#x81F3;&#x5C11;&#x4E3A;1&#xFF0C;&#x4E0D;&#x8D85;&#x8FC7;9&#xFF0C;&#x63A8;&#x8350;&#x4E3A;&#x5947;&#x6570;&#x4E2A;&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span> 
+
+<span class="hljs-comment"># zk&#x6570;&#x91CF;-1 &#xFF0C;&#x4E3A;&#x4E86;&#x4EA7;&#x751F;seq</span>
+numofzk=$(expr <span class="hljs-variable">${NUMOFZK}</span> - 1)
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x8BBE;&#x7F6E;host&#x6587;&#x4EF6;&quot;</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> `seq 0 <span class="hljs-variable">$numofzk</span>`;<span class="hljs-keyword">do</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-variable">${privateIpArr[$i]}</span> <span class="hljs-string">&apos;\t&apos;</span>  <span class="hljs-variable">${instanceIdArr[$i]}</span>&gt;&gt;/etc/hosts
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-comment"># &#x5224;&#x65AD;${ZKDATAPATH}&#x662F;&#x5426;&#x5B58;&#x5728;&#x6B64;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x521B;&#x5EFA;</span>
+mkdir -p <span class="hljs-string">&quot;<span class="hljs-variable">${ZKDATAPATH}</span>&quot;</span>
+<span class="hljs-keyword">if</span> [ ! <span class="hljs-_">-d</span> <span class="hljs-string">&quot;<span class="hljs-variable">${ZKDATAPATH}</span>&quot;</span> ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;<span class="hljs-variable">${ZKDATAPATH}</span>&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;&#x786E;&#x8BA4;&#x6743;&#x9650;&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span> 
+
+<span class="hljs-comment"># &#x5224;&#x65AD;${ZKLOGPATH}&#x662F;&#x5426;&#x5B58;&#x5728;&#x6B64;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x521B;&#x5EFA;</span>
+mkdir -p <span class="hljs-string">&quot;<span class="hljs-variable">${ZKLOGPATH}</span>&quot;</span>
+<span class="hljs-keyword">if</span> [ ! <span class="hljs-_">-d</span> <span class="hljs-string">&quot;<span class="hljs-variable">${ZKLOGPATH}</span>&quot;</span> ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;<span class="hljs-variable">${ZKLOGPATH}</span>&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;&#x786E;&#x8BA4;&#x6743;&#x9650;&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span> 
+
+<span class="hljs-comment">#&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x6587;&#x4EF6;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x6587;&#x4EF6;&quot;</span>
+wget -q <span class="hljs-variable">${S3_INSTALL_BUCKET}</span>/zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz -O <span class="hljs-variable">${ZKDATAPATH}</span>/zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz
+<span class="hljs-keyword">if</span> [ ! <span class="hljs-_">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">${ZKDATAPATH}</span>/zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz&quot;</span> ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0B;&#x8F7D;&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;<span class="hljs-variable">${S3_INSTALL_BUCKET}</span>/zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5B58;&#x5728;&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4FEE;&#x6539;&#x5185;&#x6838;&#x6587;&#x4EF6;&quot;</span>
+mkdir -p <span class="hljs-string">&quot;/etc/sysctl.d&quot;</span>
+<span class="hljs-keyword">if</span> [ ! <span class="hljs-_">-d</span> <span class="hljs-string">&quot;/etc/sysctl.d&quot;</span> ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;/etc/sysctl.d&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;&#x786E;&#x8BA4;&#x6743;&#x9650;&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span> 
+
+cat &lt;&lt;EOF &gt;/etc/sysctl.d/97-sysctl.conf
+net.ipv4.tcp_syncookies = 0
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_synack_retries = 3
+net.ipv4.tcp_syn_retries = 3
+net.ipv4.tcp_rfc1337 = 1
+net.ipv4.ip_<span class="hljs-built_in">local</span>_port_range = 1024 65535
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.tcp_ecn = 0
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_fack = 1
+net.ipv4.tcp_dsack = 1
+net.ipv4.ip_forward = 0
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.tcp_tw_recycle = 1
+net.ipv4.tcp_max_syn_backlog = 20000
+net.ipv4.tcp_orphan_retries = 1
+net.ipv4.tcp_fin_timeout = 20
+net.ipv4.tcp_no_metrics_save = 1
+net.ipv4.tcp_moderate_rcvbuf = 1
+net.ipv4.tcp_rmem = 4096 87380 16777216
+net.ipv4.tcp_wmem = 4096 65536 16777216
+net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
+net.core.netdev_max_backlog = 2500
+net.core.somaxconn = 65000
+EOF
+
+<span class="hljs-comment"># Reload the networking settings</span>
+/sbin/sysctl -p /etc/sysctl.d/97-sysctl.conf
+
+<span class="hljs-comment"># &#x4FEE;&#x6539;limit&#x9650;&#x5236;</span>
+cat &lt;&lt;EOF &gt;&gt;/etc/security/limits.conf
+* soft nofile 65535
+* hard nofile 65535
+* soft nproc 65535
+* hard nproc 65535
+EOF
+
+<span class="hljs-comment"># &#x89E3;&#x538B;zookeeper-${ZKVERSION}.tar.gz</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x89E3;&#x538B;zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz&#x6587;&#x4EF6;&quot;</span>
+<span class="hljs-built_in">cd</span> <span class="hljs-variable">${ZKDATAPATH}</span>
+tar -xzf <span class="hljs-string">&quot;zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz&quot;</span>
+mv zookeeper-<span class="hljs-variable">${ZKVERSION}</span> zookeeper
+rm -rf zookeeper-<span class="hljs-variable">${ZKVERSION}</span>.tar.gz
+<span class="hljs-built_in">cd</span> zookeeper
+
+<span class="hljs-comment">#&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span>
+<span class="hljs-comment"># maxClientCnxns:&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x8FDE;&#x63A5;&#x6570;&#x9650;&#x5236;&#xFF0C;0&#x4E3A;&#x4E0D;&#x9650;&#x5236;&#xFF0C;&#x5982;&#x679C;&#x8FC7;&#x591A;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x8017;&#x5C3D;</span>
+cat &lt;&lt;<span class="hljs-string">&quot;EOF&quot;</span> &gt;conf/zoo.cfg
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=<span class="hljs-variable">${ZKDATAPATH}</span>
+maxClientCnxns=0
+dataLogDir=<span class="hljs-variable">${ZKLOGPATH}</span>
+clientPort=<span class="hljs-variable">${ZKPORT}</span>
+EOF
+
+<span class="hljs-comment"># &#x5982;&#x679C;&#x662F;&#x96C6;&#x7FA4;&#x9700;&#x8981;&#x5199;&#x5165;&#x96C6;&#x7FA4;&#x4FE1;&#x606F;</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">${NUMOFZK}</span> <span class="hljs-_">-ne</span> 1 ] ;<span class="hljs-keyword">then</span> 
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> `seq 0 <span class="hljs-variable">$numofzk</span>`;<span class="hljs-keyword">do</span> 
+    <span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span>  <span class="hljs-string">&quot;server.<span class="hljs-variable">$i</span>=<span class="hljs-variable">${instanceIdArr[$i]}</span>:2888:3888&quot;</span> &gt;&gt; conf/zoo.cfg
+  <span class="hljs-keyword">done</span>
+  <span class="hljs-comment"># &#x5F53;&#x524D;&#x5E8F;&#x5217;&#x53F7;&#x662F;loopCounter,&#x53D8;&#x91CF;&#x662F;&#x4ECE;0&#x5F00;&#x59CB;&#xFF0C;&#x9875;&#x9762;&#x663E;&#x793A;&#x662F;&#x4ECE;1&#x5F00;&#x59CB; #SIPBug</span>
+  <span class="hljs-comment"># &#x521B;&#x5EFA;myid &#x6587;&#x4EF6;</span>
+  <span class="hljs-built_in">echo</span> `expr <span class="hljs-variable">${loopCounter}</span> - 1` &gt; <span class="hljs-variable">${ZKDATAPATH}</span>/myid
+<span class="hljs-keyword">fi</span> 
+
+<span class="hljs-comment"># &#x6309;&#x5929;&#x51FA;zookeeper&#x65E5;&#x5FD7;&#xFF0C;&#x907F;&#x514D;zookeeper.out&#x6587;&#x4EF6;&#x8FC7;&#x5927;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4FEE;&#x6539;zkEnv.sh&#x6587;&#x4EF6;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x65B9;&#x5F0F;&#x4ECE;CONSOLE&#x6539;&#x4E3A;ROLLINGFILE&quot;</span>
+sed -i <span class="hljs-string">&quot;s/^    ZOO_LOG4J_PROP=\&quot;INFO,CONSOLE\&quot;/    ZOO_LOG4J_PROP=\&quot;INFO,ROLLINGFILE\&quot;/g&quot;</span> bin/zkEnv.sh
+
+<span class="hljs-comment"># &#x66F4;&#x6362;&#x65E5;&#x5FD7;&#x4E3A;&#x6EDA;&#x52A8;&#x6A21;&#x5F0F;</span>
+sed -i <span class="hljs-string">&quot;s/^zookeeper.root.logger=INFO, CONSOLE/zookeeper.root.logger=INFO, ROLLINGFIL/g&quot;</span> conf/<span class="hljs-built_in">log</span>4j.properties
+<span class="hljs-comment"># &#x6BCF;&#x65E5;&#x6EDA;&#x52A8;</span>
+sed -i <span class="hljs-string">&quot;s/^log4j.appender.ROLLINGFILE=org.apache.log4j.RollingFileAppender/log4j.appender.ROLLINGFILE=org.apache.log4j.DailyRollingFileAppender/g&quot;</span> conf/<span class="hljs-built_in">log</span>4j.properties
+<span class="hljs-comment"># &#x6587;&#x4EF6;&#x683C;&#x5F0F;</span>
+sed -i <span class="hljs-string">&quot;/^log4j.appender.ROLLINGFILE.File=/alog4j.appender.ROLLINGFILE.DatePattern=&apos;.&apos;yyyy-MM-dd&quot;</span> conf/<span class="hljs-built_in">log</span>4j.properties
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;export PATH=${ZKDATAPATH}/zookeeper/bin:$PATH&apos;</span> &gt;&gt; /etc/profile
+
+<span class="hljs-comment"># &#x751F;&#x6210;zookeeper&#x542F;&#x52A8;&#x811A;&#x672C;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x751F;&#x6210;zookeeper&#x542F;&#x52A8;&#x811A;&#x672C;&quot;</span>
+cat &lt;&lt;<span class="hljs-string">&quot;EOF&quot;</span> &gt;<span class="hljs-variable">${ZKDATAPATH}</span>/zookeeper/zookeeper.sh
+<span class="hljs-meta">#!/bin/sh</span>
+<span class="hljs-comment"># Purpose: This script starts and stops the Zookeeper daemon</span>
+<span class="hljs-comment"># chkconfig: - 90 10</span>
+<span class="hljs-comment"># description: Zookeeper daemon</span>
+<span class="hljs-comment"># Source function library</span>
+. /etc/init.d/<span class="hljs-built_in">functions</span>
+APP=<span class="hljs-variable">${ZKDATAPATH}</span>/zookeeper/bin/zkServer.sh
+<span class="hljs-function"><span class="hljs-title">app</span></span>(){
+    <span class="hljs-variable">$APP</span> <span class="hljs-variable">$1</span>
+}
+<span class="hljs-function"><span class="hljs-title">error</span></span>(){
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Error: Parameter non valide !&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Usage: <span class="hljs-variable">$0</span> {start | stop | restart | status}&quot;</span>
+<span class="hljs-built_in">exit</span> 1
+}
+<span class="hljs-function"><span class="hljs-title">usage</span></span>(){
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Usage: <span class="hljs-variable">$0</span> {start | stop | restart | status}&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&quot;</span>
+}
+<span class="hljs-function"><span class="hljs-title">start</span></span>(){
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Starting Zookeeper&quot;</span>
+    app start
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Done&quot;</span>
+}
+<span class="hljs-function"><span class="hljs-title">stop</span></span>(){
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Stopping Zookeeper&quot;</span>
+    app stop
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Done&quot;</span>
+}
+<span class="hljs-function"><span class="hljs-title">restart</span></span>(){
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Restarting Zookeeper&quot;</span>
+    app stop
+    sleep 5
+    app start
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Done&quot;</span>
+}
+<span class="hljs-function"><span class="hljs-title">status</span></span>(){
+<span class="hljs-built_in">echo</span> <span class="hljs-_">-e</span> <span class="hljs-string">&quot;Zookeeper status&quot;</span>
+    app status
+}
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> <span class="hljs-keyword">in</span>
+    start)  
+        start 
+        ;;
+    stop)   
+        stop 
+        ;;
+    status) 
+        status
+        ;;
+    restart) 
+        restart
+        ;;
+    <span class="hljs-built_in">help</span>) 
+        usage 
+        ;;
+*) 
+        error 
+        ;;
+<span class="hljs-keyword">esac</span>
+<span class="hljs-built_in">exit</span> 0
+EOF
+
+<span class="hljs-comment"># &#x5236;&#x4F5C;zookeeper&#x542F;&#x52A8;&#x670D;&#x52A1;&#x811A;&#x672C;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x5236;&#x4F5C;zookeeper&#x542F;&#x52A8;&#x670D;&#x52A1;&#x811A;&#x672C;&quot;</span>
+chmod +x <span class="hljs-variable">${ZKDATAPATH}</span>/zookeeper/zookeeper.sh
+ln <span class="hljs-_">-s</span> <span class="hljs-variable">${ZKDATAPATH}</span>/zookeeper/zookeeper.sh /etc/init.d/zookeeper
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$Release</span> = <span class="hljs-string">&quot;rhel6&quot;</span> ] ;<span class="hljs-keyword">then</span> 
+  chkconfig --add zookeeper
+  chkconfig zookeeper on 
+<span class="hljs-keyword">fi</span> 
+/etc/init.d/zookeeper start
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;zookeeper&#x5B89;&#x88C5;&#x5B8C;&#x6210;&quot;</span>
+<span class="hljs-built_in">exit</span> 0
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="mongodb_shard.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: MongoDB集群-分片集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Apache zookeeper","level":"1.4.8","depth":2,"next":{"title":"脚本管理","level":"1.5","depth":1,"ref":"","articles":[{"title":"Linux格式化磁盘","level":"1.5.1","depth":2,"path":"demo/linux_volume_format.md","ref":"demo/linux_volume_format.md","articles":[]}]},"previous":{"title":"MongoDB集群-分片集群","level":"1.4.7","depth":2,"path":"demo/mongodb_shard.md","ref":"demo/mongodb_shard.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["include-codeblock","mermaid-gb3","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/apache_zookeeper.md","mtime":"2019-01-14T08:54:56.318Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-14T08:51:20.763Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+
