@@ -6,13 +6,8 @@
   },
   {
     "Key": "numofzk",
-    "DisplayName": "地址",
+    "DisplayName": "服务器数量",
     "Value": "${parameters.NUMOFZK}"
-  },
-  {
-    "Key": "zkips",
-    "DisplayName": "集群规模",
-    "Value": "${outputs.multi.zookeeper.privateIp}"
   },
   {
     "Key": "port",

@@ -243,7 +243,7 @@ EOF
 echo "制作zookeeper启动服务脚本"
 chmod +x ${ZKDATAPATH}/zookeeper/zookeeper.sh
 ln -s ${ZKDATAPATH}/zookeeper/zookeeper.sh /etc/init.d/zookeeper
-if [ $Release -eq "rhel6" ] ;then 
+if [ $Release = "rhel6" ] ;then 
   chkconfig --add zookeeper
   chkconfig zookeeper on 
 fi 

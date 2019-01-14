@@ -10,5 +10,6 @@
     * [MongoDB主从](demo/mongodb_master-slave.md)
     * [MongoDB集群-副本集群](demo/mongodb_repl.md)
     * [MongoDB集群-分片集群](demo/mongodb_shard.md)
+    * [Apache zookeeper](demo/apache_zookeeper.md)
 * 脚本管理
     * [Linux格式化磁盘](demo/linux_volume_format.md)
