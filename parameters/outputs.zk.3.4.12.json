@@ -1,0 +1,32 @@
+[
+  {
+    "Key": "version",
+    "DisplayName": "版本",
+    "Value": "${parameters.ZKVERSION}"
+  },
+  {
+    "Key": "numofzk",
+    "DisplayName": "地址",
+    "Value": "${parameters.NUMOFZK}"
+  },
+  {
+    "Key": "zkips",
+    "DisplayName": "集群规模",
+    "Value": "${outputs.multi.zookeeper.privateIp}"
+  },
+  {
+    "Key": "port",
+    "DisplayName": "端口",
+    "Value": "${parameters.ZKPORT}"
+  },
+  {
+    "Key": "zkdatapath",
+    "DisplayName": "数据路径",
+    "Value": "${parameters.ZKDATAPATH}"
+  },
+  {
+    "Key": "zklogpath",
+    "DisplayName": "日志路径",
+    "Value": "${parameters.ZKLOGPATH}"
+  }  
+]

@@ -4,6 +4,7 @@
 # ZKLOGPATH: 日志路径
 # ZKENABLEADMIN: 是否启用管理员
 # ZKADMIN:  管理员用户名
+# ZKPORT: port
 # ZKPASS: 管理员密码
 # NUMOFZK: 服务器数量
 # ZKVERSION: 版本
@@ -120,6 +121,14 @@ EOF
 # Reload the networking settings
 /sbin/sysctl -p /etc/sysctl.d/97-sysctl.conf
 
+# 修改limit限制
+cat <<EOF >>/etc/security/limits.conf
+* soft nofile 65535
+* hard nofile 65535
+* soft nproc 65535
+* hard nproc 65535
+EOF
+
 # 解压zookeeper-${ZKVERSION}.tar.gz
 echo "解压zookeeper-${ZKVERSION}.tar.gz文件"
 cd ${ZKDATAPATH}
@@ -129,13 +138,17 @@ rm -rf zookeeper-${ZKVERSION}.tar.gz
 cd zookeeper
 
 #修改配置文件
-cp conf/zoo_sample.cfg conf/zoo.cfg
-sed -i "/^dataDir/d" conf/zoo.cfg
-sed -i "/^dataLogDir/d" conf/zoo.cfg
-sed -i "/^#maxClientCnxns/d" conf/zoo.cfg
-echo "dataDir=${ZKDATAPATH}" >>conf/zoo.cfg
-echo "dataLogDir=${ZKLOGPATH}" >> conf/zoo.cfg
-echo "maxClientCnxns=0" >> conf/zoo.cfg
+# maxClientCnxns:对于一个客户端的连接数限制，0为不限制，如果过多可能会导致内存耗尽
+cat <<"EOF" >conf/zoo.cfg
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=${ZKDATAPATH}
+maxClientCnxns=0
+dataLogDir=${ZKLOGPATH}
+clientPort=${ZKPORT}
+EOF
+
 # 如果是集群需要写入集群信息
 if [ ${NUMOFZK} -ne 1 ] ;then 
   for i in `seq 0 $numofzk`;do 
