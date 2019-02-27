@@ -1,0 +1,239 @@
+[
+  {
+    "Key": "projectId",
+    "Type": "Bingo::Project::Id",
+    "DefaultValue": "11111",
+    "DisplayName": "项目",
+    "Fn::Source": {
+      "userMode": "buy",
+      "showRegion": true
+    },
+    "sort": 1
+  },
+  {
+    "Key": "regionId",
+    "Type": "Bingo::Cloud::Region",
+    "DefaultValue": "bcc",
+    "DisplayName": "区域",
+    "Fn::Source": {},
+    "sort": 2
+  },
+  {
+    "Key": "vpcId",
+    "Type": "Bingo::EC2::Vpc::Id",
+    "DefaultValue": "",
+    "DisplayName": "网络",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "vdcId": "Ref:projectId"
+    },
+    "sort": 3
+  },
+  {
+    "Key": "elasticIpSelect",
+    "Type": "Bingo::EC2::ElasticIp::Id",
+    "DisplayName": "弹性IP",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "vpcCode": "Ref:vpcId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 4
+  },
+  {
+    "Key": "bandwidth",
+    "Type": "Number",
+    "DefaultValue": "100",
+    "DisplayName": "弹性IP带宽",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 5
+  },
+  {
+    "Key": "storageId",
+    "Type": "Bingo::EC2::CloudStorage",
+    "DisplayName": "存储类型",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 6
+  },
+  {
+    "Key": "instanceType",
+    "Type": "Bingo::EC2::InstanceType",
+    "DefaultValue": "m2.large",
+    "DisplayName": "实例类型",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "sort": 7
+  },
+  {
+    "Key": "imageId",
+    "Type": "Bingo::EC2::CloudImage",
+    "DefaultValue": "ami-6B67809C",
+    "DisplayName": "镜像",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 8
+  },
+  {
+    "Key": "securityGroupName",
+    "Type": "Bingo::EC2::SecurityGroup::Id",
+    "DefaultValue": "default",
+    "DisplayName": "安全组",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "sortField": "Create_Time"
+    },
+    "sort": 9
+  },
+  {
+    "Key": "expireTime",
+    "Type": "Bingo::EC2::ExpireTime",
+    "DefaultValue": "-1",
+    "DisplayName": "有效期",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "9ccbe743-d09e-4509-a881-982e0b477c6f"
+    },
+    "sort": 10
+  },
+  {
+    "Key": "keypairName",
+    "Type": "Bingo::EC2::KeyPair::KeyName",
+    "DisplayName": "密钥",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 11
+  },
+  {
+    "Key": "disableApiTermination",
+    "Type": "Bingo::EC2::TerminateSet",
+    "DisplayName": "是否允许销毁",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "39308868-ff7d-453d-9052-7b80f32d225b"
+    },
+    "NoEcho": "FALSE",
+    "ConstraintDescription": "防止批量时误删除，如需删除需要先取消销毁保护",
+    "AllowedCustomization": "TRUE",
+    "sort": 12
+  },
+  {
+    "Key": "buyNum",
+    "Type": "String",
+    "DefaultValue": "1",
+    "DisplayName": "创建数量",
+    "AllowedCustomization": "FALSE",
+    "sort": 13
+  },
+  {
+    "Key": "systemDataBuyNum",
+    "Type": "Number",
+    "DefaultValue": "100",
+    "DisplayName": "系统盘大小（G）",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 14
+  },
+  {
+    "Key": "REDISDATAPATH",
+    "Type": "String",
+    "DefaultValue": "/data",
+    "DisplayName": "redis数据目录",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "UIGroup": "redis配置",
+    "sort": 15
+  },
+  {
+    "Key": "REDISURL",
+    "Type": "String",
+    "DefaultValue": "http://169.254.169.254:8683/bingoinstall/redis-3.2.12.zip",
+    "DisplayName": "安装文件路径",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "UIGroup": "",
+    "sort": 16
+  },
+  {
+    "Key": "SWAPFILE",
+    "Type": "String",
+    "DefaultValue": "/opt/swapfile",
+    "DisplayName": "swap文件路径",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 17
+  },
+  {
+    "Key": "SWAPSIZE",
+    "Type": "String",
+    "DefaultValue": "AUTO",
+    "DisplayName": "swap大小",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 18
+  },
+  {
+    "Key": "volumeBuyNum",
+    "Type": "Number",
+    "DefaultValue": "100",
+    "DisplayName": "数据盘大小（G）",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "UIGroup": "redis配置",
+    "sort": 19
+  },
+  {
+    "Key": "REDISVERSION",
+    "Type": "String",
+    "DefaultValue": "3.2.12",
+    "DisplayName": "redis版本",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "UIType": "selectbutton",
+    "UIGroup": "redis配置",
+    "sort": 20
+  },
+  {
+    "Key": "type",
+    "Type": "String",
+    "DefaultValue": "ext4",
+    "DisplayName": "文件系统格式",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 21
+  },
+  {
+    "Key": "attachdir",
+    "Type": "String",
+    "DefaultValue": "${REDISDATAPATH}",
+    "DisplayName": "挂载点",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "UIGroup": "redis配置",
+    "sort": 22
+  },
+  {
+    "Key": "size",
+    "Type": "String",
+    "DefaultValue": "${volumeBuyNum}",
+    "DisplayName": "大小（G）",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "UIGroup": "redis配置",
+    "sort": 23
+  }
+]

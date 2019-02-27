@@ -1,0 +1,22 @@
+[
+  {
+    "Key": "redisdatapath",
+    "DisplayName": "redis数据路径",
+    "Value": "${parameters.REDISDATAPATH}"
+  },
+  {
+    "Key": "redisserver",
+    "DisplayName": "redis集群规模",
+    "Value": "${parameters.REDISSERVER}"
+  },
+  {
+    "Key": "version",
+    "DisplayName": "redis版本",
+    "Value": "${parameters.REDISVERSION}"
+  },
+  {
+    "Key": "port",
+    "DisplayName": "redis端口",
+    "Value": "7001"
+  }
+]
