@@ -1,0 +1,1004 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Mysql 单机 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="mysql_cluster.html" />
+    
+    
+    <link rel="prev" href="redis_cluster.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../rules.html">
+            
+                <a href="../rules.html">
+            
+                    
+                    规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../conceptions.html">
+            
+                <a href="../conceptions.html">
+            
+                    
+                    概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    自动化部署样例
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="simple_demo.html">
+            
+                <a href="simple_demo.html">
+            
+                    
+                    简单的流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="oracle_tuxedo.html">
+            
+                <a href="oracle_tuxedo.html">
+            
+                    
+                    Oracle Tuxedo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="oracle_single.html">
+            
+                <a href="oracle_single.html">
+            
+                    
+                    Oracle 单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="oracle_adg.html">
+            
+                <a href="oracle_adg.html">
+            
+                    
+                    Oracle Active Dataguard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="redis_single.html">
+            
+                <a href="redis_single.html">
+            
+                    
+                    Redis 单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="redis_cluster.html">
+            
+                <a href="redis_cluster.html">
+            
+                    
+                    Redis 集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.7" data-path="mysql_single.html">
+            
+                <a href="mysql_single.html">
+            
+                    
+                    Mysql 单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="mysql_cluster.html">
+            
+                <a href="mysql_cluster.html">
+            
+                    
+                    Mysql 3节点集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="mongodb_single.html">
+            
+                <a href="mongodb_single.html">
+            
+                    
+                    MongoDB单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="mongodb_master-slave.html">
+            
+                <a href="mongodb_master-slave.html">
+            
+                    
+                    MongoDB主从
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="mongodb_repl.html">
+            
+                <a href="mongodb_repl.html">
+            
+                    
+                    MongoDB集群-副本集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="mongodb_shard.html">
+            
+                <a href="mongodb_shard.html">
+            
+                    
+                    MongoDB集群-分片集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="apache_zookeeper.html">
+            
+                <a href="apache_zookeeper.html">
+            
+                    
+                    Apache zookeeper
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    脚本管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="linux_volume_format.html">
+            
+                <a href="linux_volume_format.html">
+            
+                    
+                    Linux格式化磁盘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="java.md">
+            
+                <span>
+            
+                    
+                    Linux安装jdk
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Mysql 单机</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x76EE;&#x6807;">&#x76EE;&#x6807;</h1>
+<p>MySQL&#x662F;&#x4E00;&#x4E2A;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#xFF0C;&#x7531;&#x745E;&#x5178;MySQL AB &#x516C;&#x53F8;&#x5F00;&#x53D1;&#xFF0C;&#x76EE;&#x524D;&#x5C5E;&#x4E8E; Oracle &#x65D7;&#x4E0B;&#x516C;&#x53F8;&#x3002;MySQL &#x6700;&#x6D41;&#x884C;&#x7684;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#xFF0C;&#x5728; WEB &#x5E94;&#x7528;&#x65B9;&#x9762;MySQL&#x662F;&#x6700;&#x597D;&#x7684; RDBMS (Relational Database Management System&#xFF0C;&#x5173;&#x7CFB;&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;) &#x5E94;&#x7528;&#x8F6F;&#x4EF6;&#x4E4B;&#x4E00;&#x3002;</p>
+<p>&#x672C;&#x6587;&#x4ECB;&#x7ECD;Oracle Mysql5.X&#x5728;RHEL6.x&#x3001;CentOS6.X&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x3002;&#x5047;&#x8BBE;&#x8BFB;&#x8005;&#x77E5;&#x9053;<code>sip</code>&#x4E2D;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#xFF0C;&#x672C;&#x6587;&#x53EA;&#x63CF;&#x8FF0;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x81EA;&#x52A8;&#x5316;&#x90E8;&#x7F72;&#x65B9;&#x6848;&#x8BF7;&#x53C2;&#x8003;<code>sip</code>&#x4F7F;&#x7528;&#x624B;&#x518C;&#x3002;</p>
+<h1 id="&#x6A21;&#x578B;">&#x6A21;&#x578B;</h1>
+<p><img src="../asset/mysql_single_model.png" alt="mysql&#x5355;&#x673A;&#x7248;&#x6A21;&#x578B;">
+&#x672C;&#x6A21;&#x578B;&#x5206;&#x4E3A;5&#x4E2A;&#x6B65;&#x9AA4;,&#x5305;&#x542B;2&#x4E2A;&#x5E76;&#x884C;&#x5206;&#x652F;&#xFF1A;</p>
+<ul>
+<li>mysql&#x5B89;&#x5168;&#x7EC4;: &#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B89;&#x5168;&#x7EC4;</code>&#xFF0C;&#x7F16;&#x53F7;&#x4E3A;<code>mysql_sg</code>&#xFF0C;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;&#x4E3A;<code>tcp:22,3306,4444,4567,4568;udp:4567</code></li>
+<li>&#x521B;&#x5EFA;mysql&#x5B9E;&#x4F8B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B9E;&#x4F8B;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>mysql_instance</code></li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;1:<ul>
+<li>&#x6570;&#x636E;&#x76D8;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B58;&#x50A8;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>data_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.mysql_instance.instanceId}</code>,&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;&#x4E3A;<code>${outputs.mysql_instance.instanceCode}</code></li>
+<li>&#x6302;&#x8F7D;&#x6570;&#x636E;&#x76D8;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x901A;&#x7528;&#x811A;&#x672C;</code>, &#x811A;&#x672C;&#x4E3A;<code>linux_format_volume</code>,&#x7F16;&#x53F7;&#x4E3A;<code>mount_data_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.mysql_instance.instanceId}</code></li>
+</ul>
+</li>
+<li>&#x5E76;&#x884C;&#x5206;&#x652F;2:<ul>
+<li>&#x6570;&#x636E;&#x76D8;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B58;&#x50A8;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>backup_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.mysql_instance.instanceId}</code>,&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;&#x4E3A;<code>${outputs.mysql_instance.instanceCode}</code></li>
+<li>&#x6302;&#x8F7D;&#x6570;&#x636E;&#x76D8;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x901A;&#x7528;&#x811A;&#x672C;</code>, &#x811A;&#x672C;&#x4E3A;<code>linux_format_volume</code>,&#x7F16;&#x53F7;&#x4E3A;<code>mount_backup_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.mysql_instance.instanceId}</code></li>
+</ul>
+</li>
+<li>&#x5B89;&#x88C5;mysql: &#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x7EC4;&#x4EF6;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>install_mysql</code>&#xFF0C;&#x7EC4;&#x4EF6;&#x540D;&#x79F0;<code>mysql</code>,&#x5B89;&#x88C5;&#x811A;&#x672C;&#x4E3A;&#x4E0B;&#x9762;&#x7684;&#x811A;&#x672C;<code>install_mysql_single.sh</code></li>
+</ul>
+<h1 id="&#x6587;&#x4EF6;&#x51C6;&#x5907;">&#x6587;&#x4EF6;&#x51C6;&#x5907;</h1>
+<p>&#x9700;&#x8981;&#x5728;S3&#x7684;<code>bingoinstall</code>&#x6876;&#x4E2D;&#x5C06;&#x4E0B;&#x5217;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#xFF0C;&#x5E76;&#x4E14;&#x5F00;&#x901A;&#x4E0B;&#x8F7D;&#x80FD;&#x529B;&#x3002;</p>
+<ul>
+<li>5.6.40&#xFF1A;<code>mysql-5.6.40.zip</code>(&#x6570;&#x636E;&#x5E93;&#x5B89;&#x88C5;&#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;),&#x8FD9;&#x4E2A;&#x5B89;&#x88C5;&#x5305;&#x79CD;&#x96C6;&#x6210;&#x4E86;&#x4F9D;&#x8D56;&#x7684;rpm&#x5305;&#x3002;</li>
+</ul>
+<h1 id="&#x8F93;&#x5165;&#x53C2;&#x6570;">&#x8F93;&#x5165;&#x53C2;&#x6570;</h1>
+<ul>
+<li>MYSQLDATAPATH: MYSQL&#x6570;&#x636E;&#x8DEF;&#x5F84;</li>
+<li>MYSQLBACKUPPATH: MYSQL&#x5907;&#x4EFD;&#x6570;&#x636E;&#x8DEF;&#x5F84;</li>
+<li>MYSQLCLUSTERNAME: MYSQL&#x96C6;&#x7FA4;&#x540D;&#x79F0;</li>
+<li>MYSQLROOTPASSWD: MYSQL ROOT&#x5BC6;&#x7801;</li>
+<li>MYSQLSSTPASSWD: MYSQL SST&#x5BC6;&#x7801;</li>
+<li>MYSQLBACKUPKEEP: MYSQL &#x5907;&#x4EFD;&#x4FDD;&#x7559;&#x5468;&#x671F;</li>
+<li>MYSQLURL&#xFF1A;s3&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF0C;&#x4F8B;&#x5982;<a href="http://169.254.169.254:8683/bingoinstall/mysql-5.6.40.zip" target="_blank">http://169.254.169.254:8683/bingoinstall/mysql-5.6.40.zip</a></li>
+</ul>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;projectId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::Project::Id&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;11111&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x9879;&#x76EE;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;userMode&quot;</span>: <span class="hljs-string">&quot;buy&quot;</span>,
+      <span class="hljs-string">&quot;showRegion&quot;</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MOUNTPOINT&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;/apps&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x76D8;&#x6302;&#x63A5;&#x76EE;&#x5F55;&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;mount_data_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;VOLUMEID&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${outputs.data_volume.volumeCode}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x76D8;ID&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;mount_data_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MOUNTPOINT&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;/backup&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5907;&#x4EFD;&#x76D8;&#x6302;&#x63A5;&#x76EE;&#x5F55;&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;mount_backup_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;VOLUMEID&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${outputs.backup_volume.volumeCode}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5907;&#x4EFD;&#x76D8;ID&quot;</span>,
+    <span class="hljs-string">&quot;NameSpace&quot;</span>: <span class="hljs-string">&quot;mount_backup_volume&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">5</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;regionId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::Cloud::Region&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;bcc&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x533A;&#x57DF;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {},
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">6</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;vpcId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::Vpc::Id&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7F51;&#x7EDC;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>,
+      <span class="hljs-string">&quot;vdcId&quot;</span>: <span class="hljs-string">&quot;Ref:projectId&quot;</span>
+    },
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">7</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;elasticIpSelect&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::ElasticIp::Id&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5F39;&#x6027;IP&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>,
+      <span class="hljs-string">&quot;vpcCode&quot;</span>: <span class="hljs-string">&quot;Ref:vpcId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">8</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;bandwidth&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Number&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;100&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5F39;&#x6027;IP&#x5E26;&#x5BBD;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">9</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;storageId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::CloudStorage&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B58;&#x50A8;&#x7C7B;&#x578B;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">10</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;instanceType&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::InstanceType&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;m2.large&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">11</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;imageId&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::CloudImage&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;ami-9375AE22&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x955C;&#x50CF;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">12</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;securityGroupName&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::SecurityGroup::Id&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;default&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5B89;&#x5168;&#x7EC4;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>,
+      <span class="hljs-string">&quot;sortField&quot;</span>: <span class="hljs-string">&quot;Create_Time&quot;</span>
+    },
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">13</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;expireTime&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::ExpireTime&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;-1&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6709;&#x6548;&#x671F;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;dictId&quot;</span>: <span class="hljs-string">&quot;9ccbe743-d09e-4509-a881-982e0b477c6f&quot;</span>
+    },
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">14</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;keypairName&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::KeyPair::KeyName&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5BC6;&#x94A5;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;regionId&quot;</span>: <span class="hljs-string">&quot;Ref:regionId&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">15</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;disableApiTermination&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;Bingo::EC2::TerminateSet&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x9500;&#x6BC1;&quot;</span>,
+    <span class="hljs-string">&quot;Fn::Source&quot;</span>: {
+      <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+      <span class="hljs-string">&quot;dictId&quot;</span>: <span class="hljs-string">&quot;39308868-ff7d-453d-9052-7b80f32d225b&quot;</span>
+    },
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;ConstraintDescription&quot;</span>: <span class="hljs-string">&quot;&#x9632;&#x6B62;&#x6279;&#x91CF;&#x65F6;&#x8BEF;&#x5220;&#x9664;&#xFF0C;&#x5982;&#x9700;&#x5220;&#x9664;&#x9700;&#x8981;&#x5148;&#x53D6;&#x6D88;&#x9500;&#x6BC1;&#x4FDD;&#x62A4;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">16</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;FSTYPE&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;ext4&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5907;&#x4EFD;&#x76D8;&#x683C;&#x5F0F;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">17</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;buyNum&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6570;&#x91CF;&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">18</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLURL&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;http://169.254.169.254:8683/bingoinstall/mysql-5.6.40.zip&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;mysql&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;url&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">19</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;NEEDREBOOT&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;true&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6302;&#x76D8;&#x662F;&#x5426;&#x91CD;&#x542F;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">20</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;volumeBuyNum&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;50&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x78C1;&#x76D8;&#x5927;&#x5C0F;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedValues&quot;</span>: [
+      {
+        <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;50G&quot;</span>,
+        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;50&quot;</span>
+      },
+      {
+        <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;100G&quot;</span>,
+        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;100&quot;</span>
+      },
+      {
+        <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;200G&quot;</span>,
+        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;200&quot;</span>
+      }
+    ],
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIType&quot;</span>: <span class="hljs-string">&quot;selectbutton&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;biz&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">21</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLBACKUPKEEP&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;15&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5907;&#x4EFD;&#x4FDD;&#x7559;&#x5929;&#x6570;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIType&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;biz&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">22</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLROOTPASSWD&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;pass@word1&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;root&#x5BC6;&#x7801;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;Description&quot;</span>: <span class="hljs-string">&quot;&#x9ED8;&#x8BA4;&#x5BC6;&#x7801;&#x4E3A;pass@word1&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;TRUE&quot;</span>,
+    <span class="hljs-string">&quot;UIType&quot;</span>: <span class="hljs-string">&quot;password&quot;</span>,
+    <span class="hljs-string">&quot;UIGroup&quot;</span>: <span class="hljs-string">&quot;biz&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">23</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLSSTPASSWD&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;sst-${MYSQLROOTPASSWD}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;sst&#x5BC6;&#x7801;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">24</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLCLUSTERNAME&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;single&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;mysql&#x96C6;&#x7FA4;&#x540D;&#x79F0;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">25</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLBACKUPPATH&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${mount_backup_volume.MOUNTPOINT}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5907;&#x4EFD;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">26</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;MYSQLDATAPATH&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;${mount_data_volume.MOUNTPOINT}&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x6570;&#x636E;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">27</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;systemDataBuyNum&quot;</span>,
+    <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;String&quot;</span>,
+    <span class="hljs-string">&quot;DefaultValue&quot;</span>: <span class="hljs-string">&quot;100&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x7CFB;&#x7EDF;&#x76D8;&#x5927;&#x5C0F;&quot;</span>,
+    <span class="hljs-string">&quot;NoEcho&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;AllowedCustomization&quot;</span>: <span class="hljs-string">&quot;FALSE&quot;</span>,
+    <span class="hljs-string">&quot;sort&quot;</span>: <span class="hljs-number">28</span>
+  }
+]
+</code></pre>
+<h1 id="&#x8F93;&#x51FA;&#x53C2;&#x6570;">&#x8F93;&#x51FA;&#x53C2;&#x6570;</h1>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;InstanceId&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;mysql&#x5B9E;&#x4F8B;ID&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${outputs.mysql_instance.instanceCode}(${outputs.mysql_instance.privateIp})&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;mysqlpath&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;mysql&#x6570;&#x636E;&#x8DEF;&#x5F84;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.mount_data_volume.MOUNTPOINT}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;mysqlbackuppath&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;mysql&#x5907;&#x4EFD;&#x8DEF;&#x5F84;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.mount_backup_volume.MOUNTPOINT}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;rootpass&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;root&#x5BC6;&#x7801;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.MYSQLROOTPASSWD}&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;Key&quot;</span>: <span class="hljs-string">&quot;backupkeep&quot;</span>,
+    <span class="hljs-string">&quot;DisplayName&quot;</span>: <span class="hljs-string">&quot;&#x5907;&#x4EFD;&#x4FDD;&#x7559;&#x5468;&#x671F;&quot;</span>,
+    <span class="hljs-string">&quot;Value&quot;</span>: <span class="hljs-string">&quot;${parameters.MYSQLBACKUPKEEP}&quot;</span>
+  }
+]
+</code></pre>
+<h1 id="&#x811A;&#x672C;&#x5185;&#x5BB9;">&#x811A;&#x672C;&#x5185;&#x5BB9;</h1>
+<h2 id="installmysqlsinglesh">install_mysql_single.sh</h2>
+<pre><code class="lang-sh"><span class="hljs-meta">#! /bin/sh</span>
+<span class="hljs-comment">#######################</span>
+<span class="hljs-comment"># MYSQLDATAPATH: MYSQL&#x6570;&#x636E;&#x8DEF;&#x5F84;</span>
+<span class="hljs-comment"># MYSQLBACKUPPATH: MYSQL&#x5907;&#x4EFD;&#x6570;&#x636E;&#x8DEF;&#x5F84;</span>
+<span class="hljs-comment"># MYSQLCLUSTERNAME: MYSQL&#x96C6;&#x7FA4;&#x540D;&#x79F0;</span>
+<span class="hljs-comment"># MYSQLROOTPASSWD: MYSQL ROOT&#x5BC6;&#x7801;</span>
+<span class="hljs-comment"># MYSQLSSTPASSWD: MYSQL SST&#x5BC6;&#x7801;</span>
+<span class="hljs-comment"># MYSQLBACKUPKEEP: MYSQL &#x5907;&#x4EFD;&#x4FDD;&#x7559;&#x5468;&#x671F;</span>
+<span class="hljs-comment"># MYSQLURL&#xFF1A;s3&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF0C;&#x4F8B;&#x5982;http://169.254.169.254:8683/bingoinstall/mysql-5.6.40.zip</span>
+<span class="hljs-comment">#######################</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x8BBE;&#x7F6E;host&#x6587;&#x4EF6;&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">${outputs.mysql_instance.privateIp}</span>    &quot;</span>  `hostname` &gt;&gt;/etc/hosts
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0B;&#x8F7D;mysql&#x5B89;&#x88C5;&#x5305;&quot;</span>
+<span class="hljs-keyword">if</span> [[ <span class="hljs-_">-f</span> /etc/redhat-release ]]; <span class="hljs-keyword">then</span>
+  ver0=<span class="hljs-string">&quot;<span class="hljs-variable">$(cat /etc/redhat-release |awk -Frelease &apos;{print $2}&apos; |awk &apos;{print $1}&apos;)</span>&quot;</span>
+  ver=<span class="hljs-string">&quot;<span class="hljs-variable">$(echo ${ver0%%.*})</span>&quot;</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$ver</span>&quot;</span> = <span class="hljs-string">&quot;7&quot;</span> ]; <span class="hljs-keyword">then</span>
+    Release=<span class="hljs-string">&quot;rhel7&quot;</span>
+  <span class="hljs-keyword">elif</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$ver</span>&quot;</span> = <span class="hljs-string">&quot;6&quot;</span> ]; <span class="hljs-keyword">then</span>
+    Release=<span class="hljs-string">&quot;rhel6&quot;</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;centos&#x6216;&#x8005;rhel6&#x3001;7&#x7248;&#x672C;&quot;</span>
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;centos&#x6216;&#x8005;rhel6&#x3001;7&#x7248;&#x672C;&quot;</span>
+    <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
+
+wget <span class="hljs-variable">${MYSQLURL}</span> -O mysql.zip 
+unzip -q mysql.zip 
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x5B89;&#x88C5;mysql&#x8F6F;&#x4EF6;&#x5305;&quot;</span>
+yum remove -y mysql
+yum install mysql/install/<span class="hljs-variable">$Release</span>/*.rpm -y
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x51C6;&#x5907;mysql&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&quot;</span>
+mkdir -p <span class="hljs-variable">${MYSQLDATAPATH}</span>/{data,<span class="hljs-built_in">log</span>,run,scripts}
+mkdir -p <span class="hljs-variable">${MYSQLBACKUPPATH}</span>
+chown -R mysql:mysql <span class="hljs-variable">${MYSQLDATAPATH}</span>
+chown -R mysql:mysql <span class="hljs-variable">${MYSQLBACKUPPATH}</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x51C6;&#x5907;mysql&#x914D;&#x7F6E;&#x6587;&#x4EF6;&quot;</span>
+cat &lt;&lt;EOF &gt;/etc/my.cnf
+[mysqld]
+user=mysql
+socket=<span class="hljs-variable">${MYSQLDATAPATH}</span>/run/mysqld.sock
+pid-file=<span class="hljs-variable">${MYSQLDATAPATH}</span>/run/mysqld.pid
+symbolic-links=0
+explicit_defaults_<span class="hljs-keyword">for</span>_timestamp=<span class="hljs-literal">true</span>
+
+datadir=<span class="hljs-variable">${MYSQLDATAPATH}</span>/data
+max_connections=1000
+skip-name-resolve
+sql_mode=STRICT_ALL_TABLES
+collation-server=utf8_general_ci
+character-set-server=utf8
+skip-character-set-client-handshake
+
+default-storage-engine=INNODB
+innodb_file_per_table=1
+innodb_data_home_dir=<span class="hljs-variable">${MYSQLDATAPATH}</span>/data
+innodb_data_file_path=ibdata1:128M:autoextend
+innodb_<span class="hljs-built_in">log</span>_group_home_dir=<span class="hljs-variable">${MYSQLDATAPATH}</span>/data
+innodb_<span class="hljs-built_in">log</span>_file_size=256M
+innodb_<span class="hljs-built_in">log</span>_files_<span class="hljs-keyword">in</span>_group=2
+innodb_locks_unsafe_<span class="hljs-keyword">for</span>_binlog=1
+innodb_autoinc_lock_mode=2
+innodb_doublewrite=1
+sync_binlog=1
+innodb_flush_<span class="hljs-built_in">log</span>_at_trx_commit=2
+
+thread_cache_size=16
+innodb_buffer_pool_size=256M
+tmp_table_size=128M
+max_heap_table_size=64M
+
+binlog_format=ROW
+wsrep_cluster_name=<span class="hljs-variable">${MYSQLCLUSTERNAME}</span>
+wsrep_provider=/usr/lib64/libgalera_smm.so
+wsrep_sst_method=xtrabackup-v2
+wsrep_sst_auth=sst:<span class="hljs-variable">${MYSQLSSTPASSWD}</span>
+wsrep_slave_threads=16
+wsrep_provider_options=<span class="hljs-string">&apos;pc.ignore_sb=1;gcache.size=256M;gcache.page_size=256M&apos;</span>
+wsrep_replicate_myisam=1
+slave-skip-errors=1062
+
+wsrep_cluster_address=gcomm://<span class="hljs-variable">${outputs.mysql_instance.privateIp}</span>
+wsrep_node_address=<span class="hljs-variable">${outputs.mysql_instance.privateIp}</span>
+wsrep_node_name=`hostname`
+
+[mysqld_safe]
+<span class="hljs-built_in">log</span>-error=/var/<span class="hljs-built_in">log</span>/mysqld.log
+
+[client]
+socket=<span class="hljs-variable">${MYSQLDATAPATH}</span>/run/mysqld.sock
+default-character-set=utf8
+EOF
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x521D;&#x59CB;&#x5316;&#x6570;&#x636E;&#x5E93;&quot;</span>
+mysql_install_db
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x542F;&#x52A8;mysql&quot;</span>
+service mysql bootstrap-pxc
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x914D;&#x7F6E;root&#x5BC6;&#x7801;&quot;</span>
+mysql <span class="hljs-_">-e</span> <span class="hljs-string">&quot;GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;<span class="hljs-variable">${MYSQLROOTPASSWD}</span>&apos;;&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x914D;&#x7F6E;sst&#x5BC6;&#x7801;&quot;</span>
+mysql <span class="hljs-_">-e</span> <span class="hljs-string">&quot;GRANT RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO &apos;sst&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;<span class="hljs-variable">${MYSQLSSTPASSWD}</span>&apos;;&quot;</span>
+
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x51C6;&#x5907;&#x5907;&#x4EFD;&#x811A;&#x672C;&quot;</span>
+
+cat &lt;&lt;<span class="hljs-string">&quot;EOF&quot;</span> &gt;<span class="hljs-variable">${MYSQLDATAPATH}</span>/scripts/backup_delete.sh
+<span class="hljs-meta">#! /bin/sh</span>
+backupday=`date +%Y%m%d%H%M%S`
+deleteday=`date <span class="hljs-_">-d</span> <span class="hljs-string">&quot;<span class="hljs-variable">${MYSQLBACKUPKEEP}</span> days ago&quot;</span> +%Y%m%ds`
+backupfile=<span class="hljs-string">&quot;<span class="hljs-variable">${MYSQLBACKUPPATH}</span>/`hostname`-mysql-<span class="hljs-variable">${backupday}</span>.tar&quot;</span>
+<span class="hljs-keyword">if</span> innobackupex --defaults-file=<span class="hljs-string">&quot;/etc/my.cnf&quot;</span> --user=<span class="hljs-string">&quot;sst&quot;</span> --password=<span class="hljs-string">&quot;<span class="hljs-variable">${MYSQLSSTPASSWD}</span>&quot;</span> --no-version-check --stream=tar /tmp | xz -T2 -1 - &gt; <span class="hljs-string">&quot;<span class="hljs-variable">${backupfile}</span>&quot;</span> 2&gt;/dev/null;<span class="hljs-keyword">then</span>
+  rm -rf <span class="hljs-variable">${MYSQLBACKUPPATH}</span>/`hostname`-mysql-<span class="hljs-variable">${deleteday}</span>*.tar
+<span class="hljs-keyword">fi</span>
+EOF
+chmod +x <span class="hljs-variable">${MYSQLDATAPATH}</span>/scripts/backup_delete.sh
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;0 1 */1 * * <span class="hljs-variable">${MYSQLDATAPATH}</span>/scripts/backup_delete.sh&quot;</span> &gt;&gt; /var/spool/cron/root
+service crond restart
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="redis_cluster.html" class="navigation navigation-prev " aria-label="Previous page: Redis 集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="mysql_cluster.html" class="navigation navigation-next " aria-label="Next page: Mysql 3节点集群">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Mysql 单机","level":"1.4.7","depth":2,"next":{"title":"Mysql 3节点集群","level":"1.4.8","depth":2,"path":"demo/mysql_cluster.md","ref":"demo/mysql_cluster.md","articles":[]},"previous":{"title":"Redis 集群","level":"1.4.6","depth":2,"path":"demo/redis_cluster.md","ref":"demo/redis_cluster.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["include-codeblock","mermaid-gb3","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/mysql_single.md","mtime":"2019-02-27T07:58:39.653Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-27T03:28:41.364Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+

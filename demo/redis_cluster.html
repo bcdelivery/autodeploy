@@ -65,7 +65,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="mongodb_single.html" />
+    <link rel="next" href="mysql_single.html" />
     
     
     <link rel="prev" href="redis_single.html" />
@@ -228,7 +228,33 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7" data-path="mongodb_single.html">
+        <li class="chapter " data-level="1.4.7" data-path="mysql_single.html">
+            
+                <a href="mysql_single.html">
+            
+                    
+                    Mysql 单机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="mysql_cluster.html">
+            
+                <a href="mysql_cluster.html">
+            
+                    
+                    Mysql 3节点集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="mongodb_single.html">
             
                 <a href="mongodb_single.html">
             
@@ -241,7 +267,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.8" data-path="mongodb_master-slave.html">
+        <li class="chapter " data-level="1.4.10" data-path="mongodb_master-slave.html">
             
                 <a href="mongodb_master-slave.html">
             
@@ -254,7 +280,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.9" data-path="mongodb_repl.html">
+        <li class="chapter " data-level="1.4.11" data-path="mongodb_repl.html">
             
                 <a href="mongodb_repl.html">
             
@@ -267,7 +293,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.10" data-path="mongodb_shard.html">
+        <li class="chapter " data-level="1.4.12" data-path="mongodb_shard.html">
             
                 <a href="mongodb_shard.html">
             
@@ -280,7 +306,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.11" data-path="apache_zookeeper.html">
+        <li class="chapter " data-level="1.4.13" data-path="apache_zookeeper.html">
             
                 <a href="apache_zookeeper.html">
             
@@ -396,8 +422,8 @@
 <p><img src="../asset/redis_cluster_model.png" alt="redis_cluster&#x6A21;&#x578B;">
 &#x672C;&#x6A21;&#x578B;&#x5206;&#x4E3A;3&#x5927;&#x6B65;&#x9AA4;&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E8C;&#x6B65;&#x9AA4;&#x4E3A;&#x5B50;&#x6D41;&#x7A0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
 <ul>
-<li>redis_sg: &#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B89;&#x5168;&#x7EC4;</code>&#xFF0C;&#x7F16;&#x53F7;&#x4E3A;<code>redis_sg</code>&#xFF0C;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;&#x4E3A;<code>tcp:22,7000,7001,7002,7003,7004,7005;tcp:17000,17001,17002,17003,17004,17005</code><ul>
-<li>&#x5B50;&#x6D41;&#x7A0B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B50;&#x6D41;&#x7A0B;</code>, &#x591A;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;&#x4E3A;<code>Parallel</code>, &#x57FA;&#x6570;&#x4E3A;<code>${REDISSERVER}</code></li>
+<li>redis_sg: &#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B89;&#x5168;&#x7EC4;</code>&#xFF0C;&#x7F16;&#x53F7;&#x4E3A;<code>redis_sg</code>&#xFF0C;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;&#x4E3A;<code>tcp:22,7000,7001,7002,7003,7004,7005;tcp:17000,17001,17002,17003,17004,17005</code></li>
+<li>&#x5B50;&#x6D41;&#x7A0B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B50;&#x6D41;&#x7A0B;</code>, &#x591A;&#x5B9E;&#x4F8B;&#x7C7B;&#x578B;&#x4E3A;<code>Parallel</code>, &#x57FA;&#x6570;&#x4E3A;<code>${REDISSERVER}</code><ul>
 <li>&#x521B;&#x5EFA;redis&#x5B9E;&#x4F8B;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B9E;&#x4F8B;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>redis</code></li>
 <li>&#x5F39;&#x6027;IP&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5F39;&#x6027;IP</code>, &#x7F16;&#x53F7;&#x4E3A;<code>redis_eip</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.redis.instanceId}</code></li>
 <li>redis&#x6570;&#x636E;&#x76D8;&#xFF1A;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x4E3A;<code>&#x5B58;&#x50A8;</code>, &#x7F16;&#x53F7;&#x4E3A;<code>data_redis_volume</code>&#xFF0C;&#x5B9E;&#x4F8B;ID&#x4E3A;<code>${outputs.redis.instanceId}</code>,&#x5B9E;&#x4F8B;&#x7F16;&#x53F7;&#x4E3A;<code>${outputs.redis.instanceCode}</code></li>
@@ -857,7 +883,7 @@ ipstr=(<span class="hljs-variable">${ipstr//,/ }</span>)
                 </a>
                 
                 
-                <a href="mongodb_single.html" class="navigation navigation-next " aria-label="Next page: MongoDB单机">
+                <a href="mysql_single.html" class="navigation navigation-next " aria-label="Next page: Mysql 单机">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -868,7 +894,7 @@ ipstr=(<span class="hljs-variable">${ipstr//,/ }</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Redis 集群","level":"1.4.6","depth":2,"next":{"title":"MongoDB单机","level":"1.4.7","depth":2,"path":"demo/mongodb_single.md","ref":"demo/mongodb_single.md","articles":[]},"previous":{"title":"Redis 单机","level":"1.4.5","depth":2,"path":"demo/redis_single.md","ref":"demo/redis_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["include-codeblock","mermaid-gb3","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/redis_cluster.md","mtime":"2019-02-27T07:17:28.205Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-27T03:28:41.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Redis 集群","level":"1.4.6","depth":2,"next":{"title":"Mysql 单机","level":"1.4.7","depth":2,"path":"demo/mysql_single.md","ref":"demo/mysql_single.md","articles":[]},"previous":{"title":"Redis 单机","level":"1.4.5","depth":2,"path":"demo/redis_single.md","ref":"demo/redis_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["include-codeblock","mermaid-gb3","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/redis_cluster.md","mtime":"2019-02-27T07:51:21.023Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-27T03:28:41.364Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
