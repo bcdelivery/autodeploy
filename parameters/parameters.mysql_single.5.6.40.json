@@ -1,0 +1,302 @@
+[
+  {
+    "Key": "projectId",
+    "Type": "Bingo::Project::Id",
+    "DefaultValue": "11111",
+    "DisplayName": "项目",
+    "Fn::Source": {
+      "userMode": "buy",
+      "showRegion": true
+    },
+    "sort": 1
+  },
+  {
+    "Key": "MOUNTPOINT",
+    "Type": "String",
+    "DefaultValue": "/apps",
+    "DisplayName": "数据盘挂接目录",
+    "NameSpace": "mount_data_volume",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 2
+  },
+  {
+    "Key": "VOLUMEID",
+    "Type": "String",
+    "DefaultValue": "${outputs.data_volume.volumeCode}",
+    "DisplayName": "数据盘ID",
+    "NameSpace": "mount_data_volume",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 3
+  },
+  {
+    "Key": "MOUNTPOINT",
+    "Type": "String",
+    "DefaultValue": "/backup",
+    "DisplayName": "备份盘挂接目录",
+    "NameSpace": "mount_backup_volume",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 4
+  },
+  {
+    "Key": "VOLUMEID",
+    "Type": "String",
+    "DefaultValue": "${outputs.backup_volume.volumeCode}",
+    "DisplayName": "备份盘ID",
+    "NameSpace": "mount_backup_volume",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 5
+  },
+  {
+    "Key": "regionId",
+    "Type": "Bingo::Cloud::Region",
+    "DefaultValue": "bcc",
+    "DisplayName": "区域",
+    "Fn::Source": {},
+    "sort": 6
+  },
+  {
+    "Key": "vpcId",
+    "Type": "Bingo::EC2::Vpc::Id",
+    "DefaultValue": "",
+    "DisplayName": "网络",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "vdcId": "Ref:projectId"
+    },
+    "sort": 7
+  },
+  {
+    "Key": "elasticIpSelect",
+    "Type": "Bingo::EC2::ElasticIp::Id",
+    "DisplayName": "弹性IP",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "vpcCode": "Ref:vpcId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 8
+  },
+  {
+    "Key": "bandwidth",
+    "Type": "Number",
+    "DefaultValue": "100",
+    "DisplayName": "弹性IP带宽",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 9
+  },
+  {
+    "Key": "storageId",
+    "Type": "Bingo::EC2::CloudStorage",
+    "DisplayName": "存储类型",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 10
+  },
+  {
+    "Key": "instanceType",
+    "Type": "Bingo::EC2::InstanceType",
+    "DefaultValue": "m2.large",
+    "DisplayName": "实例类型",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "sort": 11
+  },
+  {
+    "Key": "imageId",
+    "Type": "Bingo::EC2::CloudImage",
+    "DefaultValue": "ami-9375AE22",
+    "DisplayName": "镜像",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 12
+  },
+  {
+    "Key": "securityGroupName",
+    "Type": "Bingo::EC2::SecurityGroup::Id",
+    "DefaultValue": "default",
+    "DisplayName": "安全组",
+    "Fn::Source": {
+      "regionId": "Ref:regionId",
+      "sortField": "Create_Time"
+    },
+    "sort": 13
+  },
+  {
+    "Key": "expireTime",
+    "Type": "Bingo::EC2::ExpireTime",
+    "DefaultValue": "-1",
+    "DisplayName": "有效期",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "9ccbe743-d09e-4509-a881-982e0b477c6f"
+    },
+    "sort": 14
+  },
+  {
+    "Key": "keypairName",
+    "Type": "Bingo::EC2::KeyPair::KeyName",
+    "DisplayName": "密钥",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 15
+  },
+  {
+    "Key": "disableApiTermination",
+    "Type": "Bingo::EC2::TerminateSet",
+    "DisplayName": "是否允许销毁",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "39308868-ff7d-453d-9052-7b80f32d225b"
+    },
+    "NoEcho": "FALSE",
+    "ConstraintDescription": "防止批量时误删除，如需删除需要先取消销毁保护",
+    "AllowedCustomization": "TRUE",
+    "sort": 16
+  },
+  {
+    "Key": "FSTYPE",
+    "Type": "String",
+    "DefaultValue": "ext4",
+    "DisplayName": "备份盘格式",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 17
+  },
+  {
+    "Key": "buyNum",
+    "Type": "String",
+    "DefaultValue": "1",
+    "DisplayName": "创建数量",
+    "AllowedCustomization": "FALSE",
+    "sort": 18
+  },
+  {
+    "Key": "MYSQLURL",
+    "Type": "String",
+    "DefaultValue": "http://169.254.169.254:8683/bingoinstall/mysql-5.6.40.zip",
+    "DisplayName": "mysql安装软件url路径",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 19
+  },
+  {
+    "Key": "NEEDREBOOT",
+    "Type": "String",
+    "DefaultValue": "true",
+    "DisplayName": "挂盘是否重启",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 20
+  },
+  {
+    "Key": "volumeBuyNum",
+    "Type": "String",
+    "DefaultValue": "50",
+    "DisplayName": "磁盘大小",
+    "NoEcho": "FALSE",
+    "AllowedValues": [
+      {
+        "text": "50G",
+        "value": "50"
+      },
+      {
+        "text": "100G",
+        "value": "100"
+      },
+      {
+        "text": "200G",
+        "value": "200"
+      }
+    ],
+    "AllowedCustomization": "TRUE",
+    "UIType": "selectbutton",
+    "UIGroup": "biz",
+    "sort": 21
+  },
+  {
+    "Key": "MYSQLBACKUPKEEP",
+    "Type": "String",
+    "DefaultValue": "15",
+    "DisplayName": "备份保留天数",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "UIType": "text",
+    "UIGroup": "biz",
+    "sort": 22
+  },
+  {
+    "Key": "MYSQLROOTPASSWD",
+    "Type": "String",
+    "DefaultValue": "pass@word1",
+    "DisplayName": "root密码",
+    "NoEcho": "FALSE",
+    "Description": "默认密码为pass@word1",
+    "AllowedCustomization": "TRUE",
+    "UIType": "password",
+    "UIGroup": "biz",
+    "sort": 23
+  },
+  {
+    "Key": "MYSQLSSTPASSWD",
+    "Type": "String",
+    "DefaultValue": "sst-${MYSQLROOTPASSWD}",
+    "DisplayName": "sst密码",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 24
+  },
+  {
+    "Key": "MYSQLCLUSTERNAME",
+    "Type": "String",
+    "DefaultValue": "single",
+    "DisplayName": "mysql集群名称",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 25
+  },
+  {
+    "Key": "MYSQLBACKUPPATH",
+    "Type": "String",
+    "DefaultValue": "${mount_backup_volume.MOUNTPOINT}",
+    "DisplayName": "备份路径",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 26
+  },
+  {
+    "Key": "MYSQLDATAPATH",
+    "Type": "String",
+    "DefaultValue": "${mount_data_volume.MOUNTPOINT}",
+    "DisplayName": "数据路径",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 27
+  },
+  {
+    "Key": "systemDataBuyNum",
+    "Type": "String",
+    "DefaultValue": "100",
+    "DisplayName": "系统盘大小",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "sort": 28
+  }
+]

@@ -8,7 +8,7 @@ Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存
 ![redis_cluster模型](../asset/redis_cluster_model.png)
 本模型分为3大步骤，其中第二步骤为子流程步骤：
 * redis_sg: 资源类型为`安全组`，编号为`redis_sg`，端口信息为`tcp:22,7000,7001,7002,7003,7004,7005;tcp:17000,17001,17002,17003,17004,17005`
-  - 子流程：资源类型为`子流程`, 多实例类型为`Parallel`, 基数为`${REDISSERVER}`
+* 子流程：资源类型为`子流程`, 多实例类型为`Parallel`, 基数为`${REDISSERVER}`
   - 创建redis实例：资源类型为`实例`, 编号为`redis`
   - 弹性IP：资源类型为`弹性IP`, 编号为`redis_eip`，实例ID为`${outputs.redis.instanceId}`
   - redis数据盘：资源类型为`存储`, 编号为`data_redis_volume`，实例ID为`${outputs.redis.instanceId}`,实例编号为`${outputs.redis.instanceCode}`

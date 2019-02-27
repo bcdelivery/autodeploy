@@ -9,6 +9,8 @@
     * [Oracle Active Dataguard](demo/oracle_adg.md)
     * [Redis 单机](demo/redis_single.md)
     * [Redis 集群](demo/redis_cluster.md)
+    * [Mysql 单机](demo/mysql_single.md)
+    * [Mysql 3节点集群](demo/mysql_cluster.md)
     * [MongoDB单机](demo/mongodb_single.md)
     * [MongoDB主从](demo/mongodb_master-slave.md)
     * [MongoDB集群-副本集群](demo/mongodb_repl.md)

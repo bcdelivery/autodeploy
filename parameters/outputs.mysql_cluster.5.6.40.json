@@ -1,0 +1,27 @@
+[
+  {
+    "Key": "InstanceId",
+    "DisplayName": "mysql实例ID",
+    "Value": "${outputs.mysql1_instance.instanceCode}(${outputs.mysql1_instance.privateIp})"
+  },
+  {
+    "Key": "mysqlpath",
+    "DisplayName": "mysql数据路径路径",
+    "Value": "${parameters.mount_data_mysql1_volume.MOUNTPOINT}"
+  },
+  {
+    "Key": "mysqlbackuppath",
+    "DisplayName": "mysql备份路径",
+    "Value": "${parameters.mount_backup_mysql1_volume.MOUNTPOINT}"
+  },
+  {
+    "Key": "rootpass",
+    "DisplayName": "root密码",
+    "Value": "${parameters.MYSQLROOTPASSWD}"
+  },
+  {
+    "Key": "backupkeep",
+    "DisplayName": "备份保留周期",
+    "Value": "${parameters.MYSQLBACKUPKEEP}"
+  }
+]
