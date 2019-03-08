@@ -61,7 +61,7 @@ if !(test -d ${MOUNTPOINT});then
 else
 	echo "路径${MOUNTPOINT} 已存在"
 fi
-	 mkfs -F -t ${FSTYPE} /dev/$volume
+	 mkfs  -t ${FSTYPE} /dev/$volume
 	 mount /dev/$volume ${MOUNTPOINT}
      echo "UUID="`blkid -o value -s UUID /dev/$volume` " ${MOUNTPOINT} ${FSTYPE}    defaults        0       0">> /etc/fstab
 	echo attach volume success $volume
