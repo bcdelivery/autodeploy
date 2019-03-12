@@ -223,13 +223,13 @@ fi
 
 echo "开始安装grid"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-    su -c '${ORACLEPATH}/install/grid/runInstaller -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/install/grid/runInstaller -ignorePrereq -ignoreSysPrereqs -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh 
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -ignoreSysPrereqs -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
@@ -297,10 +297,10 @@ fi
 
 echo "安装oracle"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 echo "root执行安装"
 ${ORACLEPATH}/oracle/oracle/product/12c/db_1/root.sh
