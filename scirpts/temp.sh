@@ -14,11 +14,7 @@
 # INSTALLER_S3_BUCKET：s3路径，例如http://169.254.169.254:8683/bingoinstall
 #######################
 echo "设置hostname"
-echo "${outputs.oracle_primary.privateIp}    ${outputs.oracle_primary.instanceCode} "  >>/etc/hosts
-echo "${outputs.oracle_standby.privateIp}    ${outputs.oracle_standby.instanceCode} "  >>/etc/hosts
-
-# 安全加固后的机器/tmp目录可能普通用户没有权限造成安装失败
-chmod 777 /tmp
+echo "${outputs.oracle.privateIp}    "  `hostname` >>/etc/hosts
 
 echo "优化内核参数"
 cat <<EOF >/etc/sysctl.conf
@@ -66,7 +62,7 @@ ${ORACLEUSER} hard nproc 16384
 ${ORACLEUSER} soft nofile 1024
 ${ORACLEUSER} hard nofile 65536
 ${ORACLEUSER} soft stack 10240   
-${ORACLEUSER} hard stack 32768   
+${ORACLEUSER} hard stack 32768 
 EOF
 cat <<"EOF" >>/etc/profile.d/oracle.sh
 if [ $USER = "${ORACLEUSER}" ] ||[ $USER = "${GRIDUSER}" ]; then
@@ -80,7 +76,7 @@ fi
 EOF
 
 echo "使用udev配置asm磁盘路径和权限"
-volumestr="${outputs.multi.asm1.volumeCode}"
+volumestr="${outputs.multi.asm.volumeCode}"
 volumestr=${volumestr#[}
 volumestr=${volumestr%]}
 volumearr=(${volumestr//,/ })
@@ -227,18 +223,21 @@ fi
 
 echo "开始安装grid"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-    su -c '${ORACLEPATH}/install/grid/runInstaller  -ignoreSysPrereqs -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/install/grid/runInstaller -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh 
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh  -ignoreSysPrereqs -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -executeConfigTools -responseFile ${ORACLEPATH}/install/grid.rsp -silent -waitforcompletion'   - ${GRIDUSER}
 fi
+
+
+
 
 echo "查看磁盘"
 su -c "asmcmd lsdsk -p -G DATA"  - ${GRIDUSER}
@@ -298,27 +297,26 @@ fi
 
 echo "安装oracle"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 echo "root执行安装"
 ${ORACLEPATH}/oracle/oracle/product/12c/db_1/root.sh
 
-echo "更新补丁"
-if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip ]]; then
-  su -c 'unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
-  su -c 'unzip -o -q ${ORACLEPATH}/install/p27468969_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
-  su -c 'unzip -o -q ${ORACLEPATH}/install/p27475613_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
+
+if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/p6880880_122010_Linux-x86-64.zip ]]; then
+  echo "更新补丁"
+  su -c 'unzip ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
+  su -c 'unzip ${ORACLEPATH}/install/p27468969_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
+  su -c 'unzip ${ORACLEPATH}/install/p27475613_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
   ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/27468969/
   ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/27475613/
 fi
 
 
-echo "创建数据库"
-sleep 60 #补丁完需要等一下asm才启动
-
+echo "使用dbca创建数据库，默认没有创建containerdb"
 su -c 'dbca -silent \
 -createDatabase \
 -templateName General_Purpose.dbc \
@@ -331,7 +329,6 @@ su -c 'dbca -silent \
 -datafileDestination +DATA \
 -characterSet ${ORACLE_CHARACTER} \
 -memoryPercentage 50 \
--enableArchive true \
--redoLogFileSize 100 \
--recoveryAreaDestination +DATA \
--recoveryAreaSize 10240' - ${ORACLEUSER}
+-redoLogFileSize 100' - ${ORACLEUSER}
+
+echo "安装完成"

@@ -223,13 +223,13 @@ fi
 
 echo "开始安装grid"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-    su -c '${ORACLEPATH}/install/grid/runInstaller -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/install/grid/runInstaller -ignorePrereq -ignoreSysPrereqs -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh 
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -ignoreSysPrereqs -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
@@ -297,20 +297,20 @@ fi
 
 echo "安装oracle"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 echo "root执行安装"
 ${ORACLEPATH}/oracle/oracle/product/12c/db_1/root.sh
 
 
-if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/p6880880_122010_Linux-x86-64.zip ]]; then
+if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip ]]; then
   echo "更新补丁"
-  su -c 'unzip ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
-  su -c 'unzip ${ORACLEPATH}/install/p27468969_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
-  su -c 'unzip ${ORACLEPATH}/install/p27475613_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
+  su -c 'unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
+  su -c 'unzip -o -q ${ORACLEPATH}/install/p27468969_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
+  su -c 'unzip -o -q ${ORACLEPATH}/install/p27475613_122010_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
   ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/27468969/
   ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/27475613/
 fi
