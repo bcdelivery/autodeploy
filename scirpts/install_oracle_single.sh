@@ -297,10 +297,10 @@ fi
 
 echo "安装oracle"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq  -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure -ignoreSysPrereqs -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
+   su -c '${ORACLEPATH}/install/database/runInstaller -silent -ignoreSysPrereqs -ignorePrereq -ignorePrereqFailure  -responsefile ${ORACLEPATH}/install/database.rsp -waitforcompletion'   - ${ORACLEUSER}
 fi
 echo "root执行安装"
 ${ORACLEPATH}/oracle/oracle/product/12c/db_1/root.sh
