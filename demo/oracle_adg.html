@@ -929,6 +929,9 @@ chmod 775 <span class="hljs-variable">${ORACLEPATH}</span> -R
   wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/linuxamd64_12102_database_2of2.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_database_2of2.zip 
   wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/linuxamd64_12102_grid_1of2.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_grid_1of2.zip 
   wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/linuxamd64_12102_grid_2of2.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_grid_2of2.zip
+  wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/p6880880_122010_Linux-x86-64.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/p6880880_122010_Linux-x86-64.zip
+  wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/p28349951_121020_Linux-x86-64.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/p28349951_121020_Linux-x86-64.zip
+  wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/p28440711_121020_Linux-x86-64.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/p28440711_121020_Linux-x86-64.zip
   <span class="hljs-keyword">if</span>  [[ ! <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_database_1of2.zip ]] || [[ ! <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_database_2of2.zip ]] ; <span class="hljs-keyword">then</span> 
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x65E0;&#x6CD5;&#x4E0B;&#x8F7D;database&#x5B89;&#x88C5;&#x6587;&#x4EF6;&quot;</span>
     <span class="hljs-built_in">exit</span> 1
@@ -1109,6 +1112,15 @@ EOF&apos;</span>   - <span class="hljs-variable">${ORACLEUSER}</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;root&#x6267;&#x884C;&#x5B89;&#x88C5;&quot;</span>
 <span class="hljs-variable">${ORACLEPATH}</span>/oracle/oracle/product/12c/db_1/root.sh
 
+<span class="hljs-keyword">if</span> [[ <span class="hljs-string">&apos;${ORACLE_VERSION}&apos;</span> == <span class="hljs-string">&apos;12.1.0.2&apos;</span> ]] &amp;&amp; [[ <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/p6880880_122010_Linux-x86-64.zip ]]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x66F4;&#x65B0;grid OPatch&#x548C;&#x6570;&#x636E;&#x5E93;&#x8865;&#x4E01;&quot;</span>
+  su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
+  su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p28349951_121020_Linux-x86-64.zip -d ${ORACLEPATH}/install/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
+  su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p28440711_121020_Linux-x86-64.zip -d ${ORACLEPATH}/install/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
+  <span class="hljs-variable">${ORACLEPATH}</span>/oracle/grid/product/12c/grid/OPatch/opatchauto apply <span class="hljs-variable">${ORACLEPATH}</span>/install/28349951/
+  <span class="hljs-variable">${ORACLEPATH}</span>/oracle/grid/product/12c/grid/OPatch/opatchauto apply <span class="hljs-variable">${ORACLEPATH}</span>/install/28440711/
+<span class="hljs-keyword">fi</span>
+
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x66F4;&#x65B0;&#x8865;&#x4E01;&quot;</span>
 <span class="hljs-keyword">if</span> [[ <span class="hljs-string">&apos;${ORACLE_VERSION}&apos;</span> == <span class="hljs-string">&apos;12.2.0.1&apos;</span> ]] &amp;&amp; [[ <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/p6880880_122010_Linux-x86-64.zip ]]; <span class="hljs-keyword">then</span>
   su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
@@ -1119,9 +1131,10 @@ EOF&apos;</span>   - <span class="hljs-variable">${ORACLEUSER}</span>
 <span class="hljs-keyword">fi</span>
 
 
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x5E76;&#x542F;&#x52A8;&#x5F52;&#x6863;&quot;</span>
 sleep 60 <span class="hljs-comment">#&#x8865;&#x4E01;&#x5B8C;&#x9700;&#x8981;&#x7B49;&#x4E00;&#x4E0B;asm&#x624D;&#x542F;&#x52A8;</span>
-
+<span class="hljs-keyword">if</span> [[ <span class="hljs-string">&apos;${ORACLE_VERSION}&apos;</span> == <span class="hljs-string">&apos;12.2.0.1&apos;</span> ]] ; <span class="hljs-keyword">then</span>
+<span class="hljs-comment"># 12.2&#x5728;&#x4F7F;&#x7528;dbca&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x65F6;&#x53EF;&#x4EE5;&#x540C;&#x6B65;&#x542F;&#x7528;archivelog&#xFF0C;&#x9ED8;&#x8BA4;&#x5F52;&#x6863;&#x8DEF;&#x5F84;&#x5728;&#x95EA;&#x56DE;&#x6062;&#x590D;&#x533A;&#xFF08;Recovery Area Destination&#xFF09;</span>
 su -c <span class="hljs-string">&apos;dbca -silent \
 -createDatabase \
 -templateName General_Purpose.dbc \
@@ -1138,6 +1151,51 @@ su -c <span class="hljs-string">&apos;dbca -silent \
 -redoLogFileSize 100 \
 -recoveryAreaDestination +DATA \
 -recoveryAreaSize 10240&apos;</span> - <span class="hljs-variable">${ORACLEUSER}</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-keyword">if</span> [[ <span class="hljs-string">&apos;${ORACLE_VERSION}&apos;</span> == <span class="hljs-string">&apos;12.1.0.2&apos;</span> ]] ; <span class="hljs-keyword">then</span>
+<span class="hljs-comment"># 12.1&#x5728;&#x4F7F;&#x7528;dbca&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x65F6;&#x4E0D;&#x53EF;&#x4EE5;&#x540C;&#x6B65;&#x542F;&#x7528;archivelog&#xFF0C;&#x6240;&#x4EE5;&#x6B65;&#x9AA4;&#x5206;&#x4E3A;&#x5148;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x540E;&#x914D;&#x7F6E;&#x5F52;&#x6863;</span>
+su -c <span class="hljs-string">&apos;dbca -silent \
+-createDatabase \
+-templateName General_Purpose.dbc \
+-gdbName ${ORACLESID} \
+-sid ${ORACLESID} \
+-SysPassword ${ORACLEPASSWD}   \
+-SystemPassword ${ORACLEPASSWD}   \
+-emConfiguration LOCAL \
+-storageType ASM \
+-datafileDestination +DATA \
+-characterSet ${ORACLE_CHARACTER} \
+-memoryPercentage 50 \
+-redoLogFileSize 100 \
+-recoveryAreaDestination +DATA&apos;</span> - <span class="hljs-variable">${ORACLEUSER}</span>
+
+<span class="hljs-comment"># &#x7B49;&#x5F85;&#x6570;&#x636E;&#x5E93;&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#x542F;&#x52A8;&#x8BBF;&#x95EE;</span>
+sleep 60 
+<span class="hljs-comment"># &#x914D;&#x7F6E;&#x5F52;&#x6863;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF08;+DATA&#xFF09;&#x4EE5;&#x53CA;&#x5927;&#x5C0F;100G</span>
+su -c <span class="hljs-string">&apos;sqlplus &quot;/as sysdba&quot; &lt;&lt;EOF
+alter system set db_recovery_file_dest_size = 100G scope=both;
+shutdown immediate;
+quit;
+EOF&apos;</span>  - <span class="hljs-variable">${ORACLEUSER}</span>
+<span class="hljs-comment"># &#x542F;&#x52A8;&#x5F52;&#x6863;&#x6587;&#x4EF6;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x542F;&#x52A8;&#x5F52;&#x6863;&#x65E5;&#x5FD7;&quot;</span>
+su -c <span class="hljs-string">&apos;sqlplus &quot;/as sysdba&quot; &lt;&lt;EOF
+startup mount;
+alter database archivelog;
+alter database open;
+alter system archive log current;
+archive log list;
+quit;
+EOF&apos;</span>  - <span class="hljs-variable">${ORACLEUSER}</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x542F;&#x52A8;emctl&#xFF0C;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x4E3A;5500&quot;</span>
+su -c <span class="hljs-string">&apos;sqlplus &quot;/as sysdba&quot; &lt;&lt;EOF
+exec dbms_xdb_config.sethttpsport(5500);
+quit;
+EOF&apos;</span>  - <span class="hljs-variable">${ORACLEUSER}</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE; https://<span class="hljs-variable">${outputs.oracle_primary.privateIp}</span>:5500/em &#x8FDB;&#x884C;&#x7BA1;&#x7406;&quot;</span>
 </code></pre>
 <h2 id="installoracledgprimarystep2sh">install_oracle_dg_primary_step2.sh</h2>
 <pre><code class="lang-sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x914D;&#x7F6E;standby&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7EC4;&quot;</span>
@@ -1313,6 +1371,9 @@ chmod 775 <span class="hljs-variable">${ORACLEPATH}</span> -R
   wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/linuxamd64_12102_database_2of2.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_database_2of2.zip 
   wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/linuxamd64_12102_grid_1of2.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_grid_1of2.zip 
   wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/linuxamd64_12102_grid_2of2.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_grid_2of2.zip
+  wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/p6880880_122010_Linux-x86-64.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/p6880880_122010_Linux-x86-64.zip
+  wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/p28349951_121020_Linux-x86-64.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/p28349951_121020_Linux-x86-64.zip
+  wget -q <span class="hljs-variable">${INSTALLER_S3_BUCKET}</span>/p28440711_121020_Linux-x86-64.zip  -O <span class="hljs-variable">${ORACLEPATH}</span>/install/p28440711_121020_Linux-x86-64.zip
   <span class="hljs-keyword">if</span>  [[ ! <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_database_1of2.zip ]] || [[ ! <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/linuxamd64_12102_database_2of2.zip ]] ; <span class="hljs-keyword">then</span> 
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x65E0;&#x6CD5;&#x4E0B;&#x8F7D;database&#x5B89;&#x88C5;&#x6587;&#x4EF6;&quot;</span>
     <span class="hljs-built_in">exit</span> 1
@@ -1497,6 +1558,15 @@ EOF&apos;</span>   - <span class="hljs-variable">${ORACLEUSER}</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;root&#x6267;&#x884C;&#x5B89;&#x88C5;&quot;</span>
 <span class="hljs-variable">${ORACLEPATH}</span>/oracle/oracle/product/12c/db_1/root.sh
 
+<span class="hljs-keyword">if</span> [[ <span class="hljs-string">&apos;${ORACLE_VERSION}&apos;</span> == <span class="hljs-string">&apos;12.1.0.2&apos;</span> ]] &amp;&amp; [[ <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/p6880880_122010_Linux-x86-64.zip ]]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x66F4;&#x65B0;grid OPatch&#x548C;&#x6570;&#x636E;&#x5E93;&#x8865;&#x4E01;&quot;</span>
+  su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
+  su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p28349951_121020_Linux-x86-64.zip -d ${ORACLEPATH}/install/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
+  su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p28440711_121020_Linux-x86-64.zip -d ${ORACLEPATH}/install/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
+  <span class="hljs-variable">${ORACLEPATH}</span>/oracle/grid/product/12c/grid/OPatch/opatchauto apply <span class="hljs-variable">${ORACLEPATH}</span>/install/28349951/
+  <span class="hljs-variable">${ORACLEPATH}</span>/oracle/grid/product/12c/grid/OPatch/opatchauto apply <span class="hljs-variable">${ORACLEPATH}</span>/install/28440711/
+<span class="hljs-keyword">fi</span>
+
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#x66F4;&#x65B0;&#x8865;&#x4E01;&quot;</span>
 <span class="hljs-keyword">if</span> [[ <span class="hljs-string">&apos;${ORACLE_VERSION}&apos;</span> == <span class="hljs-string">&apos;12.2.0.1&apos;</span> ]] &amp;&amp; [[ <span class="hljs-_">-f</span> <span class="hljs-variable">${ORACLEPATH}</span>/install/p6880880_122010_Linux-x86-64.zip ]]; <span class="hljs-keyword">then</span>
   su -c <span class="hljs-string">&apos;unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/&apos;</span> - <span class="hljs-variable">${GRIDUSER}</span>
@@ -1668,7 +1738,7 @@ EOF&apos;</span> - <span class="hljs-variable">${ORACLEUSER}</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Oracle Active Dataguard","level":"1.4.4","depth":2,"next":{"title":"Redis 单机","level":"1.4.5","depth":2,"path":"demo/redis_single.md","ref":"demo/redis_single.md","articles":[]},"previous":{"title":"Oracle 单机","level":"1.4.3","depth":2,"path":"demo/oracle_single.md","ref":"demo/oracle_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["include-codeblock","mermaid-gb3","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/oracle_adg.md","mtime":"2019-02-27T06:08:20.524Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-14T09:11:00.363Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Oracle Active Dataguard","level":"1.4.4","depth":2,"next":{"title":"Redis 单机","level":"1.4.5","depth":2,"path":"demo/redis_single.md","ref":"demo/redis_single.md","articles":[]},"previous":{"title":"Oracle 单机","level":"1.4.3","depth":2,"path":"demo/oracle_single.md","ref":"demo/oracle_single.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["include-codeblock","mermaid-gb3","livereload"],"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"demo/oracle_adg.md","mtime":"2019-02-27T06:08:20.524Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-19T08:20:45.977Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
