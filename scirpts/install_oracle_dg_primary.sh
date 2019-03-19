@@ -126,6 +126,9 @@ if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
   wget -q ${INSTALLER_S3_BUCKET}/linuxamd64_12102_database_2of2.zip  -O ${ORACLEPATH}/install/linuxamd64_12102_database_2of2.zip 
   wget -q ${INSTALLER_S3_BUCKET}/linuxamd64_12102_grid_1of2.zip  -O ${ORACLEPATH}/install/linuxamd64_12102_grid_1of2.zip 
   wget -q ${INSTALLER_S3_BUCKET}/linuxamd64_12102_grid_2of2.zip  -O ${ORACLEPATH}/install/linuxamd64_12102_grid_2of2.zip
+  wget -q ${INSTALLER_S3_BUCKET}/p6880880_122010_Linux-x86-64.zip  -O ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip
+  wget -q ${INSTALLER_S3_BUCKET}/p28349951_121020_Linux-x86-64.zip  -O ${ORACLEPATH}/install/p28349951_121020_Linux-x86-64.zip
+  wget -q ${INSTALLER_S3_BUCKET}/p28440711_121020_Linux-x86-64.zip  -O ${ORACLEPATH}/install/p28440711_121020_Linux-x86-64.zip
   if  [[ ! -f ${ORACLEPATH}/install/linuxamd64_12102_database_1of2.zip ]] || [[ ! -f ${ORACLEPATH}/install/linuxamd64_12102_database_2of2.zip ]] ; then 
     echo "无法下载database安装文件"
     exit 1
@@ -306,6 +309,15 @@ fi
 echo "root执行安装"
 ${ORACLEPATH}/oracle/oracle/product/12c/db_1/root.sh
 
+if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]] && [[ -f ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip ]]; then
+  echo "更新grid OPatch和数据库补丁"
+  su -c 'unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
+  su -c 'unzip -o -q ${ORACLEPATH}/install/p28349951_121020_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
+  su -c 'unzip -o -q ${ORACLEPATH}/install/p28440711_121020_Linux-x86-64.zip -d ${ORACLEPATH}/install/' - ${GRIDUSER}
+  ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/28349951/
+  ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/28440711/
+fi
+
 echo "更新补丁"
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip ]]; then
   su -c 'unzip -o -q ${ORACLEPATH}/install/p6880880_122010_Linux-x86-64.zip -d ${ORACLEPATH}/oracle/grid/product/12c/grid/' - ${GRIDUSER}
@@ -316,9 +328,10 @@ if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/install/p68808
 fi
 
 
-echo "创建数据库"
+echo "创建数据库并启动归档"
 sleep 60 #补丁完需要等一下asm才启动
-
+if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] ; then
+# 12.2在使用dbca创建数据库时可以同步启用archivelog，默认归档路径在闪回恢复区（Recovery Area Destination）
 su -c 'dbca -silent \
 -createDatabase \
 -templateName General_Purpose.dbc \
@@ -335,3 +348,48 @@ su -c 'dbca -silent \
 -redoLogFileSize 100 \
 -recoveryAreaDestination +DATA \
 -recoveryAreaSize 10240' - ${ORACLEUSER}
+fi
+
+if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]] ; then
+# 12.1在使用dbca创建数据库时不可以同步启用archivelog，所以步骤分为先创建数据库后配置归档
+su -c 'dbca -silent \
+-createDatabase \
+-templateName General_Purpose.dbc \
+-gdbName ${ORACLESID} \
+-sid ${ORACLESID} \
+-SysPassword ${ORACLEPASSWD}   \
+-SystemPassword ${ORACLEPASSWD}   \
+-emConfiguration LOCAL \
+-storageType ASM \
+-datafileDestination +DATA \
+-characterSet ${ORACLE_CHARACTER} \
+-memoryPercentage 50 \
+-redoLogFileSize 100 \
+-recoveryAreaDestination +DATA' - ${ORACLEUSER}
+
+# 等待数据库创建完成后启动访问
+sleep 60 
+# 配置归档日志文件路径（+DATA）以及大小100G
+su -c 'sqlplus "/as sysdba" <<EOF
+alter system set db_recovery_file_dest_size = 100G scope=both;
+shutdown immediate;
+quit;
+EOF'  - ${ORACLEUSER}
+# 启动归档文件
+echo "启动归档日志"
+su -c 'sqlplus "/as sysdba" <<EOF
+startup mount;
+alter database archivelog;
+alter database open;
+alter system archive log current;
+archive log list;
+quit;
+EOF'  - ${ORACLEUSER}
+fi
+
+echo "启动emctl，默认端口为5500"
+su -c 'sqlplus "/as sysdba" <<EOF
+exec dbms_xdb_config.sethttpsport(5500);
+quit;
+EOF'  - ${ORACLEUSER}
+echo "可以访问 https://${outputs.oracle_primary.privateIp}:5500/em 进行管理"
