@@ -6,6 +6,7 @@
     * [简单的流程](demo/simple_demo.md)
     * [Oracle Tuxedo](demo/oracle_tuxedo.md)
     * [Oracle 单机](demo/oracle_single.md)
+        - [Oracle 扩容运维方案](demo/oracle_extend_single.md)
     * [Oracle Active Dataguard](demo/oracle_adg.md)
     * [Redis 单机](demo/redis_single.md)
     * [Redis 集群](demo/redis_cluster.md)

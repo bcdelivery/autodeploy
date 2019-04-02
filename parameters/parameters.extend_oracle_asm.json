@@ -1,0 +1,105 @@
+[
+  {
+    "Key": "projectId",
+    "Type": "Bingo::Project::Id",
+    "DefaultValue": "11111",
+    "DisplayName": "项目",
+    "Fn::Source": {
+      "userMode": "buy",
+      "showRegion": true
+    },
+    "sort": 1
+  },
+  {
+    "Key": "regionId",
+    "Type": "Bingo::Cloud::Region",
+    "DefaultValue": "bcc",
+    "DisplayName": "区域",
+    "Fn::Source": {},
+    "sort": 2
+  },
+  {
+    "Key": "storageId",
+    "Type": "Bingo::EC2::CloudStorage",
+    "DisplayName": "存储类型",
+    "Fn::Source": {
+      "regionId": "Ref:regionId"
+    },
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "sort": 3
+  },
+  {
+    "Key": "disableApiTermination",
+    "Type": "Bingo::EC2::TerminateSet",
+    "DisplayName": "是否允许销毁",
+    "Fn::Source": {
+      "content": "",
+      "status": "",
+      "dictId": "39308868-ff7d-453d-9052-7b80f32d225b"
+    },
+    "NoEcho": "FALSE",
+    "ConstraintDescription": "防止批量时误删除，如需删除需要先取消销毁保护",
+    "AllowedCustomization": "FALSE",
+    "sort": 4
+  },
+  {
+    "Key": "volumenum",
+    "Type": "Number",
+    "DefaultValue": "1",
+    "DisplayName": "磁盘数量",
+    "NoEcho": "FALSE",
+    "MaxValue": "10",
+    "MinValue": "1",
+    "AllowedCustomization": "TRUE",
+    "UIType": "text",
+    "UIGroup": "oracle参数组",
+    "sort": 5
+  },
+  {
+    "Key": "volumeBuyNum",
+    "Type": "Number",
+    "DefaultValue": "100",
+    "DisplayName": "数据盘大小（G）",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "TRUE",
+    "UIGroup": "oracle参数组",
+    "sort": 6
+  },
+  {
+    "Key": "GRIDUSER",
+    "Type": "String",
+    "DefaultValue": "grid",
+    "DisplayName": "grid用户",
+    "NoEcho": "FALSE",
+    "AllowedCustomization": "FALSE",
+    "UIGroup": "oracle参数组",
+    "sort": 7
+  },
+  {
+    "Key": "Oracle",
+    "AllowedCustomization": "FALSE",
+    "DefaultValue": {
+      "Fn::GetProcessOutputs": [
+        {
+          "Fn::GetAtt": [
+            {
+              "Fn::GetAppEnv": [
+                "EnvParams:EnvId"
+              ]
+            },
+            "createProcessInstanceId"
+          ]
+        },
+        "oracle",
+        [
+          "instanceCode",
+          "instanceId"
+        ]
+      ]
+    },
+    "sort": 8,
+    "Comments":"Fn::GetAppEnv函数可以获取部署案例的EnvId，Fn::GetAtt通过获取的AppEnv来获取createProcessInstanceId，Fn::GetProcessOutputs来获取对应Namespace里面的变量"
+  }
+]
+
