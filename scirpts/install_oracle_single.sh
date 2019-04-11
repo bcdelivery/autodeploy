@@ -226,13 +226,13 @@ fi
 
 echo "开始安装grid"
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
-    su -c '${ORACLEPATH}/install/grid/runInstaller -ignorePrereq -ignoreSysPrereqs -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/install/grid/runInstaller  -silent -ignoreSysPrereqs  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh 
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -ignoreSysPrereqs -ignorePrereq -silent -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -silent -skipPrereqs -ignorePrereqFailure  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
@@ -326,7 +326,8 @@ if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]] && [[ -f ${ORACLEPATH}/install/p68808
   ${ORACLEPATH}/oracle/grid/product/12c/grid/OPatch/opatchauto apply ${ORACLEPATH}/install/27475613/
 fi
 
-
+# 更新补丁后需要等待asm启动
+sleep 60
 echo "使用dbca创建数据库，默认没有创建containerdb"
 su -c 'dbca -silent \
 -createDatabase \
@@ -337,15 +338,22 @@ su -c 'dbca -silent \
 -SystemPassword ${ORACLEPASSWD}   \
 -emConfiguration LOCAL \
 -storageType ASM \
+-diskGroupName DATA -recoveryGroupName DATA \
 -datafileDestination +DATA \
 -characterSet ${ORACLE_CHARACTER} \
 -memoryPercentage 50 \
--redoLogFileSize 100' - ${ORACLEUSER}
+-redoLogFileSize 128 \
+-recoveryAreaDestination +DATA' - ${ORACLEUSER}
 
 echo "启动emctl，默认端口为5500"
 su -c 'sqlplus "/as sysdba" <<EOF
 exec dbms_xdb_config.sethttpsport(5500);
 quit;
 EOF'  - ${ORACLEUSER}
-echo "可以访问 https://${outputs.oracle_primary.privateIp}:5500/em 进行管理"
+echo "可以访问 https://${outputs.oracle.privateIp}:5500/em 进行管理"
 echo "安装完成"
+
+echo "oracle 部署完成"
+su -c 'srvctl config database -d  ${ORACLESID}' - ${ORACLEUSER}
+
+echo "数据库管理请使用srvctl start database -db ${ORACLESID}/srvctl stop database -db ${ORACLESID}"
