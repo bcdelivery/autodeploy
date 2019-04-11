@@ -98,3 +98,8 @@ echo "完成安装standby"
 
 ## install_oracle_dg_standby_step7.sh
 [import lang:"sh"](../scirpts/install_oracle_dg_standby_step7.sh)
+
+
+
+# Referrence
+- [https://oracle-base.com/articles/12c/data-guard-setup-using-broker-12cr1](https://oracle-base.com/articles/12c/data-guard-setup-using-broker-12cr1) 

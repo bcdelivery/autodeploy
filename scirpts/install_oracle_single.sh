@@ -232,7 +232,7 @@ if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -silent -ignoreSysPrereqs  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh -silent -skipPrereqs -ignorePrereqFailure  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
@@ -338,10 +338,12 @@ su -c 'dbca -silent \
 -SystemPassword ${ORACLEPASSWD}   \
 -emConfiguration LOCAL \
 -storageType ASM \
+-diskGroupName DATA -recoveryGroupName DATA \
 -datafileDestination +DATA \
 -characterSet ${ORACLE_CHARACTER} \
 -memoryPercentage 50 \
--redoLogFileSize 100' - ${ORACLEUSER}
+-redoLogFileSize 128 \
+-recoveryAreaDestination +DATA' - ${ORACLEUSER}
 
 echo "启动emctl，默认端口为5500"
 su -c 'sqlplus "/as sysdba" <<EOF
@@ -350,3 +352,8 @@ quit;
 EOF'  - ${ORACLEUSER}
 echo "可以访问 https://${outputs.oracle.privateIp}:5500/em 进行管理"
 echo "安装完成"
+
+echo "oracle 部署完成"
+su -c 'srvctl config database -d  ${ORACLESID}' - ${ORACLEUSER}
+
+echo "数据库管理请使用srvctl start database -db ${ORACLESID}/srvctl stop database -db ${ORACLESID}"

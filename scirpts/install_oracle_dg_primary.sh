@@ -236,7 +236,7 @@ if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh  -silent -ignoreSysPrereqs  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh  -silent -skipPrereqs -ignorePrereqFailure  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
@@ -341,13 +341,14 @@ su -c 'dbca -silent \
 -SystemPassword ${ORACLEPASSWD}   \
 -emConfiguration LOCAL \
 -storageType ASM \
+-diskGroupName DATA -recoveryGroupName DATA \
+-recoveryAreaDestination DATA \
 -datafileDestination +DATA \
 -characterSet ${ORACLE_CHARACTER} \
 -memoryPercentage 50 \
 -enableArchive true \
--redoLogFileSize 100 \
--recoveryAreaDestination +DATA \
--recoveryAreaSize 10240' - ${ORACLEUSER}
+-redoLogFileSize 128 \
+-recoveryAreaSize 10240 ' - ${ORACLEUSER}
 fi
 
 if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]] ; then
@@ -361,23 +362,27 @@ su -c 'dbca -silent \
 -SystemPassword ${ORACLEPASSWD}   \
 -emConfiguration LOCAL \
 -storageType ASM \
+-diskGroupName DATA -recoveryGroupName DATA \
 -datafileDestination +DATA \
 -characterSet ${ORACLE_CHARACTER} \
 -memoryPercentage 50 \
--redoLogFileSize 100 \
--recoveryAreaDestination +DATA' - ${ORACLEUSER}
+-redoLogFileSize 128' - ${ORACLEUSER}
 
 
 # 配置归档日志文件路径（+DATA）以及大小100G
 su -c 'sqlplus "/as sysdba" <<EOF
 alter system set db_recovery_file_dest_size = 100G scope=both;
-shutdown immediate;
 quit;
 EOF'  - ${ORACLEUSER}
+# 关闭Oracle数据库
+echo "shuting down oracle befor archiving redo logs"
+su -c 'srvctl stop database -db ${ORACLESID} -stopoption IMMEDIATE'  - ${ORACLEUSER}
 # 启动归档文件
 echo "启动归档日志"
+
+su -c 'srvctl start database -db ${ORACLESID} -startoption MOUNT'  - ${ORACLEUSER}
+
 su -c 'sqlplus "/as sysdba" <<EOF
-startup mount;
 alter database archivelog;
 alter database open;
 alter system archive log current;
@@ -392,3 +397,8 @@ exec dbms_xdb_config.sethttpsport(5500);
 quit;
 EOF'  - ${ORACLEUSER}
 echo "可以访问 https://${outputs.oracle_primary.privateIp}:5500/em 进行管理"
+
+echo "oracle 部署完成"
+su -c 'srvctl config database -d  ${ORACLESID}' - ${ORACLEUSER}
+
+echo "数据库管理请使用srvctl start database -db ${ORACLESID}/srvctl stop database -db ${ORACLESID}"

@@ -234,7 +234,7 @@ if [[ '${ORACLE_VERSION}' == '12.1.0.2' ]]; then
     su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${ORACLEPATH}/install/gridpass.rsp'   - ${GRIDUSER}
 fi
 if [[ '${ORACLE_VERSION}' == '12.2.0.1' ]]; then
-    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh  -silent -ignoreSysPrereqs  -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
+    su -c '${ORACLEPATH}/oracle/grid/product/12c/grid/gridSetup.sh  -silent -skipPrereqs -ignorePrereqFailure -responseFile ${ORACLEPATH}/install/grid.rsp -waitforcompletion'   - ${GRIDUSER}
     echo "安装grid后执行root脚本"
     ${ORACLEPATH}/oracle/oraInventory/orainstRoot.sh
     ${ORACLEPATH}/oracle/grid/product/12c/grid/root.sh
