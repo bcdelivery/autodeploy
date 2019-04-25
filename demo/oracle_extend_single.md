@@ -15,10 +15,11 @@
 以上文件可以在[www.oracle.com](https://www.oracle.com/cn/database/products.html)下载，请保持原样上传。
 
 # 输入参数
+* ORACLEUSER: oracle用户
+
 本运维方案中使用到了`函数`来获取在创建服务时所使用到的`输出参数`。比如参数中的变量Oracle通过函数最终编程对象{"Oracle":{"instanceId":"xxxxxxx-sss-ss-eeeee","instanceCode":"i-xxxxxxxx"}},在脚本中可以正常访问该对象。
 Fn::GetAppEnv函数可以获取部署案例的EnvId，Fn::GetAtt通过获取的AppEnv来获取createProcessInstanceId，Fn::GetProcessOutputs来获取对应Namespace里面的变量。
 
-* ORACLEUSER: oracle用户
 [import lang:"json"](../parameters/parameters.extend_oracle_asm.json)
 # 输出参数
 本运维方案无输出参数

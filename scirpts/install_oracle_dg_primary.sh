@@ -39,7 +39,7 @@ EOF
 # 使内核配置信息生效
 sysctl --system
 echo "安装oracle需要依赖的软件包"
-yum install unzip bc binutils compat-libcap1.x86_64 compat-libstdc++-33.x86_64 glibc glibc-devel ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel libxcb libX11 libXau libXi libXtst libXrender make net-tools nfs-utils smartmontools sysstat -y
+yum install unzip bc binutils compat-libcap1.x86_64 gcc gcc-c++ compat-libstdc++-33.x86_64 glibc glibc-devel ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel libxcb libX11 libXau libXi libXtst libXrender make net-tools nfs-utils smartmontools sysstat -y
 echo "创建用户"
 groupadd -g 10001 oinstall
 groupadd -g 10002 dba
@@ -342,7 +342,7 @@ su -c 'dbca -silent \
 -emConfiguration LOCAL \
 -storageType ASM \
 -diskGroupName DATA -recoveryGroupName DATA \
--recoveryAreaDestination DATA \
+-recoveryAreaDestination +DATA \
 -datafileDestination +DATA \
 -characterSet ${ORACLE_CHARACTER} \
 -memoryPercentage 50 \
